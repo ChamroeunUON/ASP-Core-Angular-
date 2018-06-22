@@ -1,3 +1,4 @@
+import { MakeService } from './services/make.service';
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
@@ -28,13 +29,16 @@ import { VihicleFormComponent } from './components/vihicle-form/vihicle-form.com
         FormsModule,
         RouterModule.forRoot([
             { path: 'reverse-counter', component: ReverseCounterComponent},
-            { path: 'vihicle', component: VihicleFormComponent},
+        { path: 'vihicle/new', component: VihicleFormComponent},
             { path: "", redirectTo: "home", pathMatch: "full" },
             { path: "home", component: HomeComponent },
             { path: "counter", component: CounterComponent },
             { path: "fetch-data", component: FetchDataComponent },
             { path: "**", redirectTo: "home" }
         ])
+    ],
+    providers:[
+        MakeService
     ]
 })
 export class AppModuleShared {
