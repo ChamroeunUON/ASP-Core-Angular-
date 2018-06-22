@@ -5,9 +5,10 @@ import { Component } from '@angular/core';
     templateUrl: './reverse-counter.component.html'
 })
 export class ReverseCounterComponent {
-    public currentCount = 10000;
+    public currentCount = 0;
 
     public decrementCounter() {
-        this.currentCount--;
+        this.currentCount++;
     }
+    
 }
