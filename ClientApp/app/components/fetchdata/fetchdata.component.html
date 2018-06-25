@@ -4,13 +4,16 @@
 
 <p *ngIf="!forecasts"><em>Loading...</em></p>
 <div>
-    <label>Summary: </label>
-    <select (change)="filterForeCasts($event.target.value)">
-        <option value="0">--All--</option>
-        <option *ngFor="let summary of summaries" value={{summary}}>
-            {{summary}}
-        </option>
-    </select>
+    <div class="form-group">
+            <label>Summary: </label>
+            <select (change)="filterForeCasts($event.target.value)" class="form-control">
+                <option value="0">--All--</option>
+                <option *ngFor="let summary of summaries" value={{summary}}>
+                    {{summary}}
+                </option>
+            </select>    
+    </div>
+    
 </div>
 
 <table class='table' *ngIf="forecasts">

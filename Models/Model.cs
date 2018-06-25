@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace ASP_Angular.Models
 {
     public class Model
@@ -6,5 +8,6 @@ namespace ASP_Angular.Models
         public string Name { get; set; } 
         public int MakeId { get; set; }
         public Make Make { get; set; }
+        // public ICollection<Feature> Features { get; set; }
     }   
 }

@@ -56,4 +56,7 @@ li.link-active a:focus {
         overflow: hidden;
         text-overflow: ellipsis;
     }
+    .navbar-inverse{
+        background-color: #350d60;
+    }
 }
