@@ -61,29 +61,27 @@ namespace ASPAngular.Migrations
                     b.ToTable("Models");
                 });
 
-            modelBuilder.Entity("ASP_Angular.Models.Vehicle", b =>
+            modelBuilder.Entity("ASP_Angular.Models.Vihicle", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ContactEmail")
-                        .HasMaxLength(255);
 
                     b.Property<string>("ContactName")
                         .IsRequired()
                         .HasMaxLength(255);
 
-                    b.Property<string>("ContactPhone")
-                        .IsRequired()
+                    b.Property<string>("Email")
                         .HasMaxLength(255);
 
                     b.Property<bool>("IsRegistered");
 
                     b.Property<int>("ModelId");
 
-                    b.HasKey("Id");
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(255);
 
-                    b.HasIndex("ModelId");
+                    b.HasKey("Id");
 
                     b.ToTable("Vihicles");
                 });
@@ -92,11 +90,11 @@ namespace ASPAngular.Migrations
                 {
                     b.Property<int>("VihicleId");
 
-                    b.Property<int>("FeatureId");
+                    b.Property<int>("FeatureID");
 
-                    b.HasKey("VihicleId", "FeatureId");
+                    b.HasKey("VihicleId", "FeatureID");
 
-                    b.HasIndex("FeatureId");
+                    b.HasIndex("FeatureID");
 
                     b.ToTable("VihicleFeatures");
                 });
@@ -109,22 +107,14 @@ namespace ASPAngular.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("ASP_Angular.Models.Vehicle", b =>
-                {
-                    b.HasOne("ASP_Angular.Models.Model", "Model")
-                        .WithMany()
-                        .HasForeignKey("ModelId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("ASP_Angular.Models.VihicleFeature", b =>
                 {
                     b.HasOne("ASP_Angular.Models.Feature", "Feature")
                         .WithMany()
-                        .HasForeignKey("FeatureId")
+                        .HasForeignKey("FeatureID")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("ASP_Angular.Models.Vehicle", "Vihicle")
+                    b.HasOne("ASP_Angular.Models.Vihicle", "Vihicle")
                         .WithMany("Features")
                         .HasForeignKey("VihicleId")
                         .OnDelete(DeleteBehavior.Cascade);
