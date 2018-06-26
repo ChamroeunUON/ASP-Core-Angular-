@@ -8,10 +8,7 @@ namespace ASPAngular.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql("INSERT INTO Features (Name) VALUES('Feature1')");
-            migrationBuilder.Sql("INSERT INTO Features (Name) VALUES('Feature2')");
-            migrationBuilder.Sql("INSERT INTO Features (Name) VALUES('Feature3')");
-            
+            migrationBuilder.Sql("INSERT INTO Features (Name) VALUES('Featurs')");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

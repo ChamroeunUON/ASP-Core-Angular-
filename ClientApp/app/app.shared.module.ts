@@ -1,8 +1,7 @@
 
 
 import { TestComponentComponent } from './components/test-component/test-component.component';
-import { MakeService } from './services/make.service';
-import { FeatureService } from './services/feature.service';
+import { VihicleService } from './services/vihicle.service';
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
@@ -48,8 +47,7 @@ import {Component} from '@angular/core';
         ])
     ],
     providers: [
-        MakeService,
-        FeatureService
+        VihicleService
     ]
 })
 export class AppModuleShared {
