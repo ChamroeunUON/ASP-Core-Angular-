@@ -6,8 +6,8 @@ namespace ASP_Angular.Models
     public class VihicleFeature
     {
         public int VihicleId { get; set; }
-        public int FeatureID { get; set; }
-        public Vihicle Vihicle { get; set; }
+        public int FeatureId { get; set; }
+        public Vehicle Vihicle { get; set; }
         public Feature  Feature { get; set; }
 
     }
