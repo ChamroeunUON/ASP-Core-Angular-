@@ -74,6 +74,16 @@ namespace ASP_Angular.Controllers {
         }
 
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetVihecle(int id){
+            var vehicle =await context.Vehicles.Include(f =>  f.Features).SingleOrDefaultAsync(fid =>fid.Id ==id);
+            if(vehicle == null)
+             return NotFound();
+            var vehicleResource = mapper.Map<Vehicle,VehicleResource>(vehicle);
+            return Ok(vehicleResource);
+        }
+
+
 
     }
 }
