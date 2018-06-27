@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ASP_Angular.Models
 {
+    [Table("Models")]
     public class Model
     {
         public int Id{set;get;}

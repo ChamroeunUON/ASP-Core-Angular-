@@ -11,9 +11,10 @@ using System;
 namespace ASPAngular.Migrations
 {
     [DbContext(typeof(VegaDbContext))]
-    partial class VegaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180627172016_EditNameVehicle")]
+    partial class EditNameVehicle
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,15 +93,15 @@ namespace ASPAngular.Migrations
 
             modelBuilder.Entity("ASP_Angular.Models.VehicleFeature", b =>
                 {
-                    b.Property<int>("VehicleId");
+                    b.Property<int>("VihicleId");
 
                     b.Property<int>("FeatureId");
 
-                    b.HasKey("VehicleId", "FeatureId");
+                    b.HasKey("VihicleId", "FeatureId");
 
                     b.HasIndex("FeatureId");
 
-                    b.ToTable("VehicleFeatures");
+                    b.ToTable("VihicleFeatures");
                 });
 
             modelBuilder.Entity("ASP_Angular.Models.Model", b =>
@@ -128,7 +129,7 @@ namespace ASPAngular.Migrations
 
                     b.HasOne("ASP_Angular.Models.Vehicle", "Vihicle")
                         .WithMany("Features")
-                        .HasForeignKey("VehicleId")
+                        .HasForeignKey("VihicleId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

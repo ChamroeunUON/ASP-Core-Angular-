@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.Azure.KeyVault.Models;
 
-namespace ASP_Angular.Models {
+namespace ASP_Angular.Models
+{
 
-    [Table ("Vihicles")]
+    [Table ("Vehicles")]
     public class Vehicle {
 
         public int Id { get; set; }
@@ -14,7 +16,8 @@ namespace ASP_Angular.Models {
         public Model Model { get; set; }
         public bool IsRegistered { get; set; }
 
-        [Required]
+        public DateTime LastUpdate { get; set; }
+         [Required]
         [StringLength (255)]
         public string ContactName { get; set; }
 
@@ -26,11 +29,10 @@ namespace ASP_Angular.Models {
 
         public string ContactPhone { get; set; }
 
-        public DateTime LastUpdate { get; set; }
 
-        public ICollection<VihicleFeature> Features { get; set; }
+        public ICollection<VehicleFeature> Features { get; set; }
         public Vehicle () {
-            Features = new Collection<VihicleFeature> ();
+            Features = new Collection<VehicleFeature> ();
         }
 
     }
