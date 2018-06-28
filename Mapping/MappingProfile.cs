@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using ASP_Angular.Controllers.Resources;
 using ASP_Angular.Models;
@@ -15,9 +14,9 @@ namespace ASP_Angular.Mapping {
             CreateMap<Vehicle, VehicleResource> ()
                 .ForMember (vr => vr.Contact, opt => opt.MapFrom (v => new ContactResource { Name = v.ContactName, Email = v.ContactEmail, Phone = v.ContactPhone }))
                 .ForMember (vr => vr.Features, opt => opt.MapFrom (v => v.Features.Select (vf => vf.FeatureId)));
-            CreateMap<Vehicle, VehicleResource>()
+            CreateMap<Vehicle, VehicleResource> ()
                 .ForMember (vr => vr.Contact, opt => opt.MapFrom (v => new ContactResource { Name = v.ContactName, Email = v.ContactEmail, Phone = v.ContactPhone }))
-                .ForMember (vr => vr.Features, opt => opt.MapFrom (v => v.Features.Select (vf => new FeatureResource{Id = vf.Feature.Id, Name = vf.Feature.Name})));
+                .ForMember (vr => vr.Features, opt => opt.MapFrom (v => v.Features.Select (vf => new FeatureResource { Id = vf.Feature.Id, Name = vf.Feature.Name })));
             // Map API Resource to Domain
             CreateMap<VehicleResource, Vehicle> ()
                 .ForMember (v => v.Id, opt => opt.Ignore ())
@@ -41,8 +40,8 @@ namespace ASP_Angular.Mapping {
 
                     // *****Using Linq******//
                     // remove from domain
-                    var removeFeatur = v.Features.Where(f => !vr.Features.Contains (f.FeatureId));
-                      
+                    var removeFeatur = v.Features.Where (f => !vr.Features.Contains (f.FeatureId));
+
                     foreach (var f in removeFeatur)
                         v.Features.Remove (f);
 

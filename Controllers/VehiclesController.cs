@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using ASP_Angular.Controllers.Resources;
 using ASP_Angular.Models;
@@ -20,7 +19,8 @@ namespace ASP_Angular.Controllers {
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreatVehicle ([FromBody] VehicleReource vehicleResorce) {
+
+        public async Task<IActionResult> CreatVehicle ([FromBody] VehicleResource vehicleResorce) {
 
             if (!ModelState.IsValid)
                 return BadRequest (ModelState);
@@ -31,17 +31,18 @@ namespace ASP_Angular.Controllers {
             //     ModelState.AddModelError("ModalId","Invalid Modal Id");
             //     return BadRequest(ModelState);
             // }
-            var vehicle = mapper.Map<VehicleReource, Vehicle> (vehicleResorce);
+            var vehicle = mapper.Map<VehicleResource, Vehicle> (vehicleResorce);
             vehicle.LastUpdate = DateTime.Now;
             context.Vehicles.Add (vehicle);
             await context.SaveChangesAsync ();
 
-            var result = mapper.Map<Vehicle, VehicleReource> (vehicle);
+            var result = mapper.Map<Vehicle, VehicleResource> (vehicle);
             return Ok (result);
+
         }
 
         [HttpPut ("{id}")]
-        public async Task<IActionResult> UpdateVehicle (int id, [FromBody] VehicleReource vehicleResorce) {
+        public async Task<IActionResult> UpdateVehicle (int id, [FromBody] VehicleResource vehicleResorce) {
 
             if (!ModelState.IsValid)
                 return BadRequest (ModelState);
@@ -55,32 +56,32 @@ namespace ASP_Angular.Controllers {
             var vehicle = await context.Vehicles.Include (v => v.Features).SingleOrDefaultAsync (i => i.Id == id);
             if (vehicle == null)
                 return NotFound ();
-            mapper.Map<VehicleReource, Vehicle> (vehicleResorce, vehicle);
+            mapper.Map<VehicleResource, Vehicle> (vehicleResorce, vehicle);
             vehicle.LastUpdate = DateTime.Now;
 
             await context.SaveChangesAsync ();
 
-            var result = mapper.Map<Vehicle, VehicleReource> (vehicle);
+            var result = mapper.Map<Vehicle, VehicleResource> (vehicle);
             return Ok (result);
         }
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteVehicle(int id){
-            var vehicle = await context.Vehicles.FindAsync(id);
-        if(vehicle == null)
-            return NotFound();
-        context.Vehicles.Remove(vehicle);
-        await context.SaveChangesAsync();
-        return Ok(id);
+
+        [HttpDelete ("{id}")]
+        public async Task<IActionResult> DeleteVehicle (int id) {
+            var vehicle = await context.Vehicles.FindAsync (id);
+            if (vehicle == null)
+                return NotFound ();
+            context.Vehicles.Remove (vehicle);
+            await context.SaveChangesAsync ();
+            return Ok (id);
         }
 
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetVihecle(int id){
-            var vehicle =await context.Vehicles.Include(f =>  f.Features).SingleOrDefaultAsync(fid =>fid.Id ==id);
-            if(vehicle == null)
-             return NotFound();
-            var vehicleResource = mapper.Map<Vehicle,VehicleReource>(vehicle);
-            return Ok(vehicleResource);
+        [HttpGet ("{id}")]
+        public async Task<IActionResult> GetVihecle (int id) {
+            var vehicle = await context.Vehicles.Include (f => f.Features).SingleOrDefaultAsync (fid => fid.Id == id);
+            if (vehicle == null)
+                return NotFound ();
+            var vehicleResource = mapper.Map<Vehicle, VehicleResource> (vehicle);
+            return Ok (vehicleResource);
         }
     }
 }

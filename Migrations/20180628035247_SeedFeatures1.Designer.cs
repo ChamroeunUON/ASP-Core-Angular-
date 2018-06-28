@@ -11,8 +11,8 @@ using System;
 namespace ASPAngular.Migrations
 {
     [DbContext(typeof(VegaDbContext))]
-    [Migration("20180626095201_EditNameModelTablePlural")]
-    partial class EditNameModelTablePlural
+    [Migration("20180628035247_SeedFeatures1")]
+    partial class SeedFeatures1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -67,15 +67,11 @@ namespace ASPAngular.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ContactEmail")
-                        .HasMaxLength(255);
-
                     b.Property<string>("ContactName")
                         .IsRequired()
                         .HasMaxLength(255);
 
-                    b.Property<string>("ContactPhone")
-                        .IsRequired()
+                    b.Property<string>("Email")
                         .HasMaxLength(255);
 
                     b.Property<bool>("IsRegistered");
@@ -84,24 +80,26 @@ namespace ASPAngular.Migrations
 
                     b.Property<int>("ModelId");
 
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(255);
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ModelId");
-
-                    b.ToTable("Vihicles");
+                    b.ToTable("Vehicles");
                 });
 
-            modelBuilder.Entity("ASP_Angular.Models.VihicleFeature", b =>
+            modelBuilder.Entity("ASP_Angular.Models.VehicleFeature", b =>
                 {
-                    b.Property<int>("VihicleId");
+                    b.Property<int>("VehicleId");
 
                     b.Property<int>("FeatureId");
 
-                    b.HasKey("VihicleId", "FeatureId");
+                    b.HasKey("VehicleId", "FeatureId");
 
                     b.HasIndex("FeatureId");
 
-                    b.ToTable("VihicleFeatures");
+                    b.ToTable("VehicleFeatures");
                 });
 
             modelBuilder.Entity("ASP_Angular.Models.Model", b =>
@@ -112,15 +110,7 @@ namespace ASPAngular.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("ASP_Angular.Models.Vehicle", b =>
-                {
-                    b.HasOne("ASP_Angular.Models.Model", "Model")
-                        .WithMany()
-                        .HasForeignKey("ModelId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("ASP_Angular.Models.VihicleFeature", b =>
+            modelBuilder.Entity("ASP_Angular.Models.VehicleFeature", b =>
                 {
                     b.HasOne("ASP_Angular.Models.Feature", "Feature")
                         .WithMany()
@@ -129,7 +119,7 @@ namespace ASPAngular.Migrations
 
                     b.HasOne("ASP_Angular.Models.Vehicle", "Vihicle")
                         .WithMany("Features")
-                        .HasForeignKey("VihicleId")
+                        .HasForeignKey("VehicleId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

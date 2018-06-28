@@ -11,8 +11,8 @@ using System;
 namespace ASPAngular.Migrations
 {
     [DbContext(typeof(VegaDbContext))]
-    [Migration("20180626094727_SetAsBefore1")]
-    partial class SetAsBefore1
+    [Migration("20180628064855_FixMore")]
+    partial class FixMore
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -86,22 +86,20 @@ namespace ASPAngular.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ModelId");
-
-                    b.ToTable("Vihicles");
+                    b.ToTable("Vehicles");
                 });
 
-            modelBuilder.Entity("ASP_Angular.Models.VihicleFeature", b =>
+            modelBuilder.Entity("ASP_Angular.Models.VehicleFeature", b =>
                 {
-                    b.Property<int>("VihicleId");
+                    b.Property<int>("VehicleId");
 
                     b.Property<int>("FeatureId");
 
-                    b.HasKey("VihicleId", "FeatureId");
+                    b.HasKey("VehicleId", "FeatureId");
 
                     b.HasIndex("FeatureId");
 
-                    b.ToTable("VihicleFeatures");
+                    b.ToTable("VehicleFeatures");
                 });
 
             modelBuilder.Entity("ASP_Angular.Models.Model", b =>
@@ -112,15 +110,7 @@ namespace ASPAngular.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("ASP_Angular.Models.Vehicle", b =>
-                {
-                    b.HasOne("ASP_Angular.Models.Model", "Model")
-                        .WithMany()
-                        .HasForeignKey("ModelId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("ASP_Angular.Models.VihicleFeature", b =>
+            modelBuilder.Entity("ASP_Angular.Models.VehicleFeature", b =>
                 {
                     b.HasOne("ASP_Angular.Models.Feature", "Feature")
                         .WithMany()
@@ -129,7 +119,7 @@ namespace ASPAngular.Migrations
 
                     b.HasOne("ASP_Angular.Models.Vehicle", "Vihicle")
                         .WithMany("Features")
-                        .HasForeignKey("VihicleId")
+                        .HasForeignKey("VehicleId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

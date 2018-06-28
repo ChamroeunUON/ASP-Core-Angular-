@@ -85,8 +85,6 @@ namespace ASPAngular.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ModelId");
-
                     b.ToTable("Vehicles");
                 });
 
@@ -108,14 +106,6 @@ namespace ASPAngular.Migrations
                     b.HasOne("ASP_Angular.Models.Make", "Make")
                         .WithMany("Models")
                         .HasForeignKey("MakeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("ASP_Angular.Models.Vehicle", b =>
-                {
-                    b.HasOne("ASP_Angular.Models.Model", "Model")
-                        .WithMany()
-                        .HasForeignKey("ModelId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
