@@ -11,9 +11,10 @@ using System;
 namespace ASPAngular.Migrations
 {
     [DbContext(typeof(VegaDbContext))]
-    partial class VegaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180626094727_SetAsBefore1")]
+    partial class SetAsBefore1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,16 +62,20 @@ namespace ASPAngular.Migrations
                     b.ToTable("Models");
                 });
 
-            modelBuilder.Entity("ASP_Angular.Models.Vihicle", b =>
+            modelBuilder.Entity("ASP_Angular.Models.Vehicle", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ContactEmail")
+                        .HasMaxLength(255);
 
                     b.Property<string>("ContactName")
                         .IsRequired()
                         .HasMaxLength(255);
 
-                    b.Property<string>("Email")
+                    b.Property<string>("ContactPhone")
+                        .IsRequired()
                         .HasMaxLength(255);
 
                     b.Property<bool>("IsRegistered");
@@ -79,30 +84,24 @@ namespace ASPAngular.Migrations
 
                     b.Property<int>("ModelId");
 
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasMaxLength(255);
-
                     b.HasKey("Id");
 
-                    b.ToTable("Vehicles");
+                    b.HasIndex("ModelId");
+
+                    b.ToTable("Vihicles");
                 });
 
-            modelBuilder.Entity("ASP_Angular.Models.VehicleFeature", b =>
+            modelBuilder.Entity("ASP_Angular.Models.VihicleFeature", b =>
                 {
-                    b.Property<int>("VehicleId");
+                    b.Property<int>("VihicleId");
 
-                    b.Property<int>("FeatureID");
+                    b.Property<int>("FeatureId");
 
-<<<<<<< HEAD
-                    b.HasKey("VihicleId", "FeatureID");
-=======
-                    b.HasKey("VehicleId", "FeatureId");
->>>>>>> 0ef9c1498861fd6d5a41dc4ddcab1f761fa941bb
+                    b.HasKey("VihicleId", "FeatureId");
 
-                    b.HasIndex("FeatureID");
+                    b.HasIndex("FeatureId");
 
-                    b.ToTable("VehicleFeatures");
+                    b.ToTable("VihicleFeatures");
                 });
 
             modelBuilder.Entity("ASP_Angular.Models.Model", b =>
@@ -113,9 +112,6 @@ namespace ASPAngular.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("ASP_Angular.Models.VihicleFeature", b =>
-=======
             modelBuilder.Entity("ASP_Angular.Models.Vehicle", b =>
                 {
                     b.HasOne("ASP_Angular.Models.Model", "Model")
@@ -124,17 +120,16 @@ namespace ASPAngular.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("ASP_Angular.Models.VehicleFeature", b =>
->>>>>>> 0ef9c1498861fd6d5a41dc4ddcab1f761fa941bb
+            modelBuilder.Entity("ASP_Angular.Models.VihicleFeature", b =>
                 {
                     b.HasOne("ASP_Angular.Models.Feature", "Feature")
                         .WithMany()
-                        .HasForeignKey("FeatureID")
+                        .HasForeignKey("FeatureId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("ASP_Angular.Models.Vihicle", "Vihicle")
+                    b.HasOne("ASP_Angular.Models.Vehicle", "Vihicle")
                         .WithMany("Features")
-                        .HasForeignKey("VehicleId")
+                        .HasForeignKey("VihicleId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
