@@ -14,5 +14,43 @@ namespace ASP_Angular.Controllers
             return Ok(vehicle);
         }
 
+<<<<<<< HEAD
+=======
+        [HttpPut ("{id}")]
+        public async Task<IActionResult> UpdateVehicle (int id, [FromBody] VehicleResource vehicleResorce) {
+
+            if (!ModelState.IsValid)
+                return BadRequest (ModelState);
+
+            // Check Validation Model Id
+            // var modal = await context.Models.FindAsync(vehicleResorce.ModelId);
+            // if(modal == null){
+            //     ModelState.AddModelError("ModalId","Invalid Modal Id");
+            //     return BadRequest(ModelState);
+            // }
+            var vehicle = await context.Vehicles.Include (v => v.Features).SingleOrDefaultAsync (i => i.Id == id);
+            if (vehicle == null)
+                return NotFound ();
+            mapper.Map<VehicleResource, Vehicle> (vehicleResorce, vehicle);
+            vehicle.LastUpdate = DateTime.Now;
+
+            await context.SaveChangesAsync ();
+
+            var result = mapper.Map<Vehicle, VehicleResource> (vehicle);
+            return Ok (result);
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteVehicle(int id){
+            var vehicle = await context.Vehicles.FindAsync(id);
+        if(vehicle == null)
+            return NotFound();
+        context.Vehicles.Remove(vehicle);
+        await context.SaveChangesAsync();
+        return Ok(id);
+        }
+
+
+
+>>>>>>> parent of 0ef9c14... Add Get API Vehicle by ID
     }
 }
