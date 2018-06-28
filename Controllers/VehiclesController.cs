@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ASP_Angular.Controllers.Resources;
 using ASP_Angular.Models;
@@ -8,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ASP_Angular.Controllers {
-    [Route ("api/vihicles")]
+    [Route ("api/vehicles")]
     public class VehiclesController : Controller {
         private readonly IMapper mapper;
         private readonly VegaDbContext context;
@@ -18,9 +20,14 @@ namespace ASP_Angular.Controllers {
             this.context = context;
         }
 
-        [HttpPost]
+        [HttpGet]
+        public IActionResult GetAllVehicles () {
+            var vehicle = context.Vehicles.ToList ();
+            return Ok (vehicle);
+        }
 
-        public async Task<IActionResult> CreatVehicle ([FromBody] VehicleResource vehicleResorce) {
+        [HttpPost]
+        public async Task<IActionResult> CreatVehicle ([FromBody] VehicleResource vehicleResource) {
 
             if (!ModelState.IsValid)
                 return BadRequest (ModelState);
@@ -31,12 +38,14 @@ namespace ASP_Angular.Controllers {
             //     ModelState.AddModelError("ModalId","Invalid Modal Id");
             //     return BadRequest(ModelState);
             // }
-            var vehicle = mapper.Map<VehicleResource, Vehicle> (vehicleResorce);
+            var vehicle = mapper.Map<VehicleResource, Vehicle> (vehicleResource);
             vehicle.LastUpdate = DateTime.Now;
+
             context.Vehicles.Add (vehicle);
             await context.SaveChangesAsync ();
 
             var result = mapper.Map<Vehicle, VehicleResource> (vehicle);
+
             return Ok (result);
 
         }
