@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace ASP_Angular.Controllers.Resources
 {
-    public class VehicleReource
+    public class VehicleResource
     {
         public int Id { get; set; }
         public ModelResource Model { get; set; }
@@ -12,10 +12,10 @@ namespace ASP_Angular.Controllers.Resources
 
         public DateTime LastUpdate { get; set; }
          public ContactResource Contact { get; set; }
-         public ICollection<FeatureResource> Feature { get; set; }
-         public VehicleReource()
+         public ICollection<int> Features { get; set; }
+         public VehicleResource()
          {
-             Feature = new Collection<FeatureResource>();
+             Features = new Collection<int>();
          }
     }
 }
