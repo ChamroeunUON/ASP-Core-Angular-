@@ -75,8 +75,6 @@ namespace ASPAngular.Migrations
 
                     b.Property<bool>("IsRegistered");
 
-                    b.Property<DateTime>("LastUpdate");
-
                     b.Property<int>("ModelId");
 
                     b.Property<string>("Phone")
@@ -85,24 +83,28 @@ namespace ASPAngular.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Vehicles");
+                    b.ToTable("Vihicles");
                 });
 
-            modelBuilder.Entity("ASP_Angular.Models.VehicleFeature", b =>
+            modelBuilder.Entity("ASP_Angular.Models.VihicleFeature", b =>
                 {
-                    b.Property<int>("VehicleId");
+                    b.Property<int>("VihicleId");
 
                     b.Property<int>("FeatureID");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
                     b.HasKey("VihicleId", "FeatureID");
 =======
                     b.HasKey("VehicleId", "FeatureId");
 >>>>>>> 0ef9c1498861fd6d5a41dc4ddcab1f761fa941bb
+=======
+                    b.HasKey("VihicleId", "FeatureId");
+>>>>>>> parent of fe27b27... Add API POST UPDATE DELETE
 
                     b.HasIndex("FeatureID");
 
-                    b.ToTable("VehicleFeatures");
+                    b.ToTable("VihicleFeatures");
                 });
 
             modelBuilder.Entity("ASP_Angular.Models.Model", b =>
@@ -124,8 +126,12 @@ namespace ASPAngular.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("ASP_Angular.Models.VehicleFeature", b =>
 >>>>>>> 0ef9c1498861fd6d5a41dc4ddcab1f761fa941bb
+=======
+            modelBuilder.Entity("ASP_Angular.Models.VihicleFeature", b =>
+>>>>>>> parent of fe27b27... Add API POST UPDATE DELETE
                 {
                     b.HasOne("ASP_Angular.Models.Feature", "Feature")
                         .WithMany()
@@ -134,7 +140,7 @@ namespace ASPAngular.Migrations
 
                     b.HasOne("ASP_Angular.Models.Vihicle", "Vihicle")
                         .WithMany("Features")
-                        .HasForeignKey("VehicleId")
+                        .HasForeignKey("VihicleId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
