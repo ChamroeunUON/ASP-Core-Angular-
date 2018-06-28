@@ -12,12 +12,14 @@ namespace ASP_Angular.Mapping {
             CreateMap<Make, ModelResource> ();
             CreateMap<Model, ModelResource> ();
             CreateMap<Feature, FeatureResource> ();
-            CreateMap<Vehicle, VehicleResource> ()
+            CreateMap<Vehicle, SaveVehicleResource> ()
                 .ForMember (vr => vr.Contact, opt => opt.MapFrom (v => new ContactResource { Name = v.ContactName, Email = v.ContactEmail, Phone = v.ContactPhone }))
                 .ForMember (vr => vr.Features, opt => opt.MapFrom (v => v.Features.Select (vf => vf.FeatureId)));
-
+            CreateMap<Vehicle, VehicleResource>()
+                .ForMember (vr => vr.Contact, opt => opt.MapFrom (v => new ContactResource { Name = v.ContactName, Email = v.ContactEmail, Phone = v.ContactPhone }))
+                .ForMember (vr => vr.Features, opt => opt.MapFrom (v => v.Features.Select (vf => new FeatureResource{Id = vf.Feature.Id, Name = vf.Feature.Name})));
             // Map API Resource to Domain
-            CreateMap<VehicleResource, Vehicle> ()
+            CreateMap<SaveVehicleResource, Vehicle> ()
                 .ForMember (v => v.Id, opt => opt.Ignore ())
                 .ForMember (v => v.ContactName, opt => opt.MapFrom (vr => vr.Contact.Name))
                 .ForMember (v => v.ContactEmail, opt => opt.MapFrom (vr => vr.Contact.Email))
@@ -41,8 +43,7 @@ namespace ASP_Angular.Mapping {
                     // remove from domain
                     var removeFeatur = v.Features.Where (f => !vr.Features.Contains (f.FeatureId));
                     foreach (var f in removeFeatur)
-                        v.Features.Remove(f);
-
+                        v.Features.Remove (f);
 
                     // Add Features to domain
                     var addFeatures = vr.Features
