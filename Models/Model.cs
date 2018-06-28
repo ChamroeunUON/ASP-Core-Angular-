@@ -9,5 +9,6 @@ namespace ASP_Angular.Models
         public int MakeId { get; set; }
         public Make Make { get; set; }
         // public ICollection<Feature> Features { get; set; }
+        
     }   
 }

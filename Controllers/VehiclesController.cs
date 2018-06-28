@@ -1,21 +1,33 @@
 
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using ASP_Angular.Models;
 using ASP_Angular.Persistence;
+using ASP_Core_Angular_.Controllers.Resources;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ASP_Angular.Controllers
 {
     [Route("api/vihicles")]
     public class VehiclesController : Controller
     {
+        private readonly IMapper mapper;
+        private readonly VegaDbContext context;
+
+        public VehiclesController(IMapper mapper, VegaDbContext context )
+        {
+            this.mapper = mapper;
+            this.context = context;
+        }
+
         [HttpPost]
         public IActionResult CreatVehicle([FromBody]Vehicle vehicle){
             return Ok(vehicle);
         }
 
-<<<<<<< HEAD
-=======
         [HttpPut ("{id}")]
         public async Task<IActionResult> UpdateVehicle (int id, [FromBody] VehicleResource vehicleResorce) {
 
@@ -49,8 +61,5 @@ namespace ASP_Angular.Controllers
         return Ok(id);
         }
 
-
-
->>>>>>> parent of 0ef9c14... Add Get API Vehicle by ID
     }
 }
