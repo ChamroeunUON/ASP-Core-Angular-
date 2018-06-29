@@ -13,10 +13,5 @@ namespace ASP_Angular.Models
         {
             Models = new Collection<Model>();
         }
-
-        internal object Select(Func<object, MakeResource> p)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

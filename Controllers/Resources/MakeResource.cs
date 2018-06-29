@@ -3,14 +3,13 @@ using System.Collections.ObjectModel;
 
 namespace ASP_Angular.Controllers.Resources
 {
-    public class MakeResource
+    public class MakeResource : KeyValuePareResource
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public ICollection<ModelResource>  Models { get; set; }
+           
+        public ICollection<KeyValuePareResource>  Models { get; set; }
         public MakeResource()
         {
-            Models = new Collection<ModelResource>();
+            Models = new Collection<KeyValuePareResource>();
         }
     }
 }
