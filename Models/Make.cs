@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using ASP_Angular.Controllers.Resources;
 
 namespace ASP_Angular.Models
 {
@@ -11,6 +13,10 @@ namespace ASP_Angular.Models
         {
             Models = new Collection<Model>();
         }
-    
+
+        internal object Select(Func<object, MakeResource> p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

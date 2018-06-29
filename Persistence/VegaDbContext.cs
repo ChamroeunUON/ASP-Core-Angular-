@@ -13,13 +13,9 @@ namespace ASP_Angular.Persistence {
         public VegaDbContext (DbContextOptions<VegaDbContext> options) : base (options) {
 
         }
-        protected override void OnModelCreating (ModelBuilder modelBuilder) {
-            // modelBuilder.Entity<VehicleFeature> ().HasKey (vf =>
-            //     new { vf.VehicleId, vf.FeatureId });    
+        protected override void OnModelCreating (ModelBuilder modelBuilder) {          
             modelBuilder.Entity<VehicleFeature>().HasKey(vf =>
                     new{vf.VehicleId,vf.FeatureId});
-
-            
         }
     }
 }

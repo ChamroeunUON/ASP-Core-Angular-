@@ -21,7 +21,7 @@ namespace ASP_Angular.Controllers {
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreatVehicle ([FromBody] VehicleResource vehicleResorce) {
+        public async Task<IActionResult> CreatVehicle ([FromBody] SaveVehicleResource vehicleResorce) {
 
             if (!ModelState.IsValid)
                 return BadRequest (ModelState);
@@ -32,17 +32,17 @@ namespace ASP_Angular.Controllers {
             //     ModelState.AddModelError("ModalId","Invalid Modal Id");
             //     return BadRequest(ModelState);
             // }
-            var vehicle = mapper.Map<VehicleResource, Vehicle> (vehicleResorce);
+            var vehicle = mapper.Map<SaveVehicleResource, Vehicle> (vehicleResorce);
             vehicle.LastUpdate = DateTime.Now;
             context.Vehicles.Add (vehicle);
             await context.SaveChangesAsync ();
 
-            var result = mapper.Map<Vehicle, VehicleResource> (vehicle);
+            var result = mapper.Map<Vehicle, SaveVehicleResource> (vehicle);
             return Ok (result);
         }
 
         [HttpPut ("{id}")]
-        public async Task<IActionResult> UpdateVehicle (int id, [FromBody] VehicleResource vehicleResorce) {
+        public async Task<IActionResult> UpdateVehicle (int id, [FromBody] SaveVehicleResource vehicleResorce) {
 
             if (!ModelState.IsValid)
                 return BadRequest (ModelState);
@@ -56,12 +56,12 @@ namespace ASP_Angular.Controllers {
             var vehicle = await context.Vehicles.Include (v => v.Features).SingleOrDefaultAsync (i => i.Id == id);
             if (vehicle == null)
                 return NotFound ();
-            mapper.Map<VehicleResource, Vehicle> (vehicleResorce, vehicle);
+            mapper.Map<SaveVehicleResource, Vehicle> (vehicleResorce, vehicle);
             vehicle.LastUpdate = DateTime.Now;
 
             await context.SaveChangesAsync ();
 
-            var result = mapper.Map<Vehicle, VehicleResource> (vehicle);
+            var result = mapper.Map<Vehicle, SaveVehicleResource> (vehicle);
             return Ok (result);
         }
         [HttpDelete("{id}")]
@@ -77,7 +77,12 @@ namespace ASP_Angular.Controllers {
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetVihecle(int id){
-            var vehicle =await context.Vehicles.Include(f =>  f.Features).SingleOrDefaultAsync(fid =>fid.Id ==id);
+            var vehicle =await context.Vehicles
+            .Include(f =>  f.Features)
+                .ThenInclude(v=>v.Feature)
+            .Include(m=>m.Model)   
+                .ThenInclude(m=>m.Make)
+            .SingleOrDefaultAsync(fid =>fid.Id ==id);
             if(vehicle == null)
              return NotFound();
             var vehicleResource = mapper.Map<Vehicle,VehicleResource>(vehicle);
