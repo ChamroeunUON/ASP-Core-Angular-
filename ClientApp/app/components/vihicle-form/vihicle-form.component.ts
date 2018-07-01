@@ -1,12 +1,10 @@
-import { FormsModule } from '@angular/forms';
-import { ServerModule } from '@angular/platform-server';
 import { VihicleService } from './../../services/vihicle.service';
 import { Component, OnInit } from '@angular/core';
 
 
 // import {MatCheckboxModule} from '@angular/material/checkbox';
 
-import 'rxjs/Rx'; 
+import 'rxjs/Rx';
 
 
 @Component({
@@ -17,22 +15,36 @@ import 'rxjs/Rx';
 export class VihicleFormComponent implements OnInit {
   makes: any;
   models: any;
-  features: any=[];
-  vehicle: any = {};
+  features: any = [];
+  vehicle: any = {
+    features: [],
+    contact:{}
+  };
   constructor(
     private vihicleService: VihicleService) { }
   ngOnInit() {
     this.vihicleService.getMakes()
       .subscribe(makes => this.makes = makes);
-    this.vihicleService.getFeatures().subscribe( features =>{
-    this.features = features;
+    this.vihicleService.getFeatures().subscribe(features => {
+      this.features = features;
       console.log(this.features);
-    } );
+    });
+
 
   }
   onMakechange() {
-    var selectMake = this.makes.find(((m: any) => m.id == this.vehicle.make));
-    this.models = selectMake.models;
+    var selectMake = this.makes.find(((m: any) => m.id == this.vehicle.makeId));
+    this.models = selectMake.models ? selectMake.models : [];
+    delete this.vehicle.modelId;
   }
-}
+  onFeatureToggle(featureId: any, $event: any) {
+    if ($event.target.checked)
+      this.vehicle.features.push(featureId);
+    else {
+      var index = this.vehicle.features.indexOf(featureId);
+      this.vehicle.features.splice(index, 1);
+    }
+  }
 
+  
+}

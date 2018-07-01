@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ASP_Angular.Core;
 using ASP_Angular.Persistence;
 using AutoMapper;
+using ASP_Angular.Core.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
@@ -12,7 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ASP_Angular {
+namespace ASP_Angular
+{
     public class Startup {
         public Startup (IConfiguration configuration) {
 
