@@ -25,7 +25,8 @@ namespace ASP_Angular
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        {   
+            services.AddScoped<IVehicleRepository,VehicleRepository>();
             services.AddAutoMapper();
             services.AddMvc();
             // var connection = @"Server=(localdb)\mssqllocaldb;Database=VegaDB;Trusted_Connection=True;ConnectRetryCount=0";
