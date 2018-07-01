@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
-using ASP_Angular.Models;
+using ASP_Angular.Core;
+using ASP_Angular.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ASP_Angular.Persistence {

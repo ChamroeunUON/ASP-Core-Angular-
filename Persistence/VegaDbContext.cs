@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using ASP_Angular.Models;
+using ASP_Angular.Core.Models;
 using Microsoft.EntityFrameworkCore;
 namespace ASP_Angular.Persistence {
     public class VegaDbContext : DbContext {

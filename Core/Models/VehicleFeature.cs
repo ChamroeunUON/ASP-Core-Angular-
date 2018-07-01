@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ASP_Angular.Models
+namespace ASP_Angular.Core.Models
 {
     [Table("VehicleFeatures")]
     public class VehicleFeature

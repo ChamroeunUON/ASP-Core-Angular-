@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ASP_Angular.Core.Models;
 
-namespace ASP_Angular.Models {
+namespace ASP_Angular.Core.Models {
     [Table ("Vehicles")]
     public class Vehicle {
         public int Id { get; set; }

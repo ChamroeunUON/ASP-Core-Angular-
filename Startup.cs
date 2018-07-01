@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ASP_Angular.Core;
 using ASP_Angular.Persistence;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;

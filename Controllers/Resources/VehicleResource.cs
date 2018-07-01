@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using ASP_Angular.Models;
+using ASP_Angular.Core.Models;
 
 namespace ASP_Angular.Controllers.Resources
 {

@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using ASP_Angular.Models;
+using ASP_Angular.Core.Models;
 
-namespace ASP_Angular.Persistence
+namespace ASP_Angular.Core
 {
     public interface IVehicleRepository
     {

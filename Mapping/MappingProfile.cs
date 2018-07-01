@@ -1,6 +1,6 @@
 using System.Linq;
 using ASP_Angular.Controllers.Resources;
-using ASP_Angular.Models;
+using ASP_Angular.Core.Models;
 using AutoMapper;
 
 namespace ASP_Angular.Mapping {
@@ -31,14 +31,14 @@ namespace ASP_Angular.Mapping {
 
                     // *****Using Linq******//
                     // remove from domain
-                    var removeFeatur = v.Features.Where (f => !vr.Features.Contains (f.FeatureId)).ToList();
+                    var removeFeatur = v.Features.Where (f => !vr.Features.Contains (f.FeatureId)).ToList ();
                     foreach (var f in removeFeatur)
                         v.Features.Remove (f);
                     // Add Features to domain
                     var addFeatures = vr.Features
                         .Where (id => !v.Features
                             .Any (f => f.FeatureId == id))
-                        .Select (id => new VehicleFeature { FeatureId = id }).ToList();
+                        .Select (id => new VehicleFeature { FeatureId = id }).ToList ();
                     foreach (var f in addFeatures)
                         v.Features.Add (f);
                     // remove Unselected features domain
