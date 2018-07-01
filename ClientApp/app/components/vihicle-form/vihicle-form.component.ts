@@ -1,4 +1,4 @@
-import { VihicleService } from './../../services/vihicle.service';
+import { VihicleService } from '../../services/vihicle.service';
 import { Component, OnInit } from '@angular/core';
 
 
@@ -45,6 +45,8 @@ export class VihicleFormComponent implements OnInit {
       this.vehicle.features.splice(index, 1);
     }
   }
-
-  
+  submit() {
+    this.vihicleService.create(this.vehicle)
+      .subscribe(x => console.log(x));
+  }
 }
