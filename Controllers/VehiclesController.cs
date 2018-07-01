@@ -61,17 +61,17 @@ namespace ASP_Angular.Controllers {
 
         [HttpDelete ("{id}")]
         public async Task<IActionResult> DeleteVehicle (int id) {
-            var vehicle = await context.Vehicles.FindAsync (id);
+            var vehicle = await repository.GetVehicle(id,includeRelated:false);
             if (vehicle == null)
                 return NotFound ();
-            context.Vehicles.Remove (vehicle);
+            repository.Remove(vehicle);
             await context.SaveChangesAsync ();
             return Ok (id);
         }
 
         [HttpGet ("{id}")]
         public async Task<IActionResult> GetVihecle (int id) {
-            var vehicle = await repository.GetVehicle (id);
+            var vehicle = await repository.GetVehicle (id,includeRelated:true);
             if (vehicle == null)
                 return NotFound ();
             var vehicleResource = mapper.Map<Vehicle, VehicleResource> (vehicle);
