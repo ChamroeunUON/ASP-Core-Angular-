@@ -31,14 +31,14 @@ namespace ASP_Angular.Mapping {
 
                     // *****Using Linq******//
                     // remove from domain
-                    var removeFeatur = v.Features.Where (f => !vr.Features.Contains (f.FeatureId));
+                    var removeFeatur = v.Features.Where (f => !vr.Features.Contains (f.FeatureId)).ToList();
                     foreach (var f in removeFeatur)
                         v.Features.Remove (f);
                     // Add Features to domain
                     var addFeatures = vr.Features
                         .Where (id => !v.Features
                             .Any (f => f.FeatureId == id))
-                        .Select (id => new VehicleFeature { FeatureId = id });
+                        .Select (id => new VehicleFeature { FeatureId = id }).ToList();
                     foreach (var f in addFeatures)
                         v.Features.Add (f);
                     // remove Unselected features domain
