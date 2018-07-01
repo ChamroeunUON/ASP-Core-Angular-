@@ -13,12 +13,12 @@ namespace ASP_Angular.Controllers {
     [Route ("api/vehicles")]
     public class VehiclesController : Controller {
         private readonly IMapper mapper;
-        private readonly VegaDbContext context;
+        private readonly IUnitOfWork unitOfWork;
         private readonly IVehicleRepository repository;
 
-        public VehiclesController (IMapper mapper, VegaDbContext context, IVehicleRepository repository) {
+        public VehiclesController (IMapper mapper,IUnitOfWork unitOfWork,IVehicleRepository repository) {
             this.mapper = mapper;
-            this.context = context;
+            this.unitOfWork = unitOfWork;
             this.repository = repository;
         }
 
@@ -29,8 +29,8 @@ namespace ASP_Angular.Controllers {
 
             var vehicle = mapper.Map<SaveVehicleResource, Vehicle> (vehicleResorce);
             vehicle.LastUpdate = DateTime.Now;
-            context.Vehicles.Add (vehicle);
-            await context.SaveChangesAsync ();
+            repository.Add(vehicle);
+            await unitOfWork.CompleteAsync();
 
             // *** One Way Mapping to resource
             // await context.Models.Include(make=>make.Make).SingleOrDefaultAsync(makeId=>makeId.Id == vehicle.ModelId);
@@ -53,7 +53,7 @@ namespace ASP_Angular.Controllers {
             mapper.Map<SaveVehicleResource, Vehicle> (vehicleResorce, vehicle);
             vehicle.LastUpdate = DateTime.Now;
 
-            await context.SaveChangesAsync ();
+            await unitOfWork.CompleteAsync();
 
             var result = mapper.Map<Vehicle, VehicleResource> (vehicle);
             return Ok (result);
@@ -65,7 +65,7 @@ namespace ASP_Angular.Controllers {
             if (vehicle == null)
                 return NotFound ();
             repository.Remove(vehicle);
-            await context.SaveChangesAsync ();
+            await unitOfWork.CompleteAsync();
             return Ok (id);
         }
 

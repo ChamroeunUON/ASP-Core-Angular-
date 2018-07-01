@@ -27,6 +27,7 @@ namespace ASP_Angular
         public void ConfigureServices(IServiceCollection services)
         {   
             services.AddScoped<IVehicleRepository,VehicleRepository>();
+            services.AddScoped<IUnitOfWork,IUnitOfWork>();
             services.AddAutoMapper();
             services.AddMvc();
             // var connection = @"Server=(localdb)\mssqllocaldb;Database=VegaDB;Trusted_Connection=True;ConnectRetryCount=0";
