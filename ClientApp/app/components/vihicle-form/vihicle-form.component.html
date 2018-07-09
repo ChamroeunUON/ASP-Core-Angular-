@@ -1,27 +1,29 @@
-<form (ngSubmit)="submit()">
+<form #f="ngForm" (ngSubmit)="submit()">
   <p>
     {{vehicle|json}}
   </p>
   <div class="form-group">
     <label for="vihicle">Maket</label>
-    <select name="name" id="make" class="form-control" (change)="onMakechange()" [(ngModel)]="vehicle.makeId"> 
+    <select name="name" id="make" class="form-control" (change)="onMakechange()" [(ngModel)]="vehicle.makeId" required #make="ngModel"> 
       <option value="">--Select Make --</option>
       <option *ngFor="let m of makes" value="{{m.id}}">{{m.name}}</option>
     </select>
+    <div class="alert alert-danger" *ngIf= "make.touched && !make.valid" >Please Specify Make</div>
   </div>
   <div class="form-group">
     <label for="">Model</label>
-    <select id="model" class="form-control" [(ngModel)]="vehicle.modelId" name="modelId">
-      <option value="model"></option>
+    <select id="model" class="form-control" [(ngModel)]="vehicle.modelId" name="modelId" required #model = "ngModel">
+      <option value="model">--Select Model--</option>
       <option *ngFor="let m of models" value="{{ m.id }}">{{m.name}}</option>
     </select>
+    <div class="aler alert-danger" *ngIf="model.touched && !model.valid" >Pleae Select Model</div>
   </div>
   <p>Is this Vihicle Registered?</p>
   <label for="registered">
-    <input name="isRegistered" id="registered" type="radio" value="true" [(ngModel)]="vehicle.isRegistered"> Yes
+    <input name="isRegistered" id="registered" type="radio"  [(ngModel)]="vehicle.isRegistered"> Yes
   </label>
   <label for="IsnoteRegistered">
-    <input type="radio" name="isRegistered" id="IsnoteRegistered" value="false" [(ngModel)]="vehicle.isRegistered"> No
+    <input type="radio" name="isRegistered" id="IsnoteRegistered" value="true"  [(ngModel)]="vehicle.isRegistered"> No
   </label>
   <h1>Features</h1>
   <div *ngFor="let f of features">
@@ -32,7 +34,8 @@
   <h1>Contact </h1>
   <div class="form-group">
     <label for="ContactName">Name</label>
-    <input id="ContactName" type="text" typ="text" class="form-control" [(ngModel)]="vehicle.contact.name" name="ContactName">
+    <input id="ContactName" type="text" typ="text" class="form-control" [(ngModel)]="vehicle.contact.name" name="ContactName" required #name ="ngModel">
+    <div class="aleret alert-danger" *ngIf="!name.value && !name.valid" >Please Enter Name.</div>
   </div>
   <div class="form-group">
     <label for="phone">Phone</label>
@@ -42,5 +45,5 @@
     <label for="email">Email</label>
     <input id="email" type="text" typ="text" class="form-control" [(ngModel)]="vehicle.contact.email" name="ContactEmail">
   </div>
-  <button class="btn btn-primary">Save</button>
+  <button class="btn btn-primary" [disabled] = "!f.valid">Save</button>
 </form>
