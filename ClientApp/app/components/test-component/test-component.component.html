@@ -1,3 +1,6 @@
+<head>
+  
+</head>
 <h1>
   {{title}}
 </h1>
@@ -9,5 +12,9 @@
 <input #box1  (keyup)="0">
 <p>{{box1.value}}</p>
 
-<input #box2 (keyup.enter)="onEnter(box2.value)">
+<input #box2 (keyup.enter)="onEnter(box2.value)"> 
 <p>{{value}}</p>
+ <button (click)="addToast()" class="btn btn-success">Add Toast</button> 
+ <button (click)="Info()" class="btn btn-info">Infomation</button> 
+ <button (click)="Error()" class="btn btn-danger">Eror</button> 
+ <button (click)="Warning()" class="btn btn-warning">Warning</button>

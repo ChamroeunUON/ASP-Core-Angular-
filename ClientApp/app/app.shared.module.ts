@@ -15,7 +15,9 @@ import { FetchDataComponent } from "./components/fetchdata/fetchdata.component";
 import { CounterComponent } from "./components/counter/counter.component";
 import { ReverseCounterComponent } from './components/reverse-counter/reverse-counter.component';
 import { VihicleFormComponent } from './components/vihicle-form/vihicle-form.component';
-import {Component} from '@angular/core';
+import { ToastyModule, ToastyService, ToastyComponent } from 'ng2-toasty';
+import { BrowserModule } from '@angular/platform-browser';
+import { ToastrService } from './services/toastr-service.service';
 
 
 
@@ -26,6 +28,7 @@ import {Component} from '@angular/core';
         CounterComponent,
         FetchDataComponent,
         HomeComponent,
+        // ToastyService,
         VihicleFormComponent,
         ReverseCounterComponent,
         TestComponentComponent
@@ -33,6 +36,7 @@ import {Component} from '@angular/core';
     imports: [
         CommonModule,
         HttpModule,
+        ToastyModule.forRoot(),
         FormsModule,
         RouterModule.forRoot([
             { path: 'reverse-counter', component: ReverseCounterComponent },
@@ -46,9 +50,14 @@ import {Component} from '@angular/core';
             
         ])
     ],
+    exports: [BrowserModule, ToastyModule],
     providers: [
-        VihicleService
-    ]
+        VihicleService,
+        ToastyService,
+        ToastrService
+        
+    ],
+
 })
 export class AppModuleShared {
 }

@@ -24,6 +24,7 @@ namespace ASP_Angular.Controllers {
 
         [HttpPost]
         public async Task<IActionResult> CreatVehicle ([FromBody] SaveVehicleResource vehicleResorce) {
+            // throw new Exception();
             if (!ModelState.IsValid)
                 return BadRequest (ModelState);
 

@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { ToastrService } from './../../services/toastr-service.service';
+
+import { Component, NgModule } from '@angular/core';
+
 
 @Component({
     selector: 'app',
@@ -6,4 +9,14 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+    /**
+     *
+     */
+    constructor(private toasterService: ToastrService) {
+
+    }
+    Success() {
+        this.toasterService.Success("Successfully");
+    }
+
 }
