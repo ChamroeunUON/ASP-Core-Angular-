@@ -14,8 +14,8 @@
 
 <input #box2 (keyup.enter)="onEnter(box2.value)"> 
 <p>{{value}}</p>
- <button (click)="addToast()" class="btn btn-success">Add Toast</button> 
- <button (click)="Info()" class="btn btn-info">Infomation</button> 
- <button (click)="Error()" class="btn btn-danger">Eror</button> 
- <button (click)="Warning()" class="btn btn-warning">Warning</button>
- <button (click)="ToastyTest()" class="btn btn-warning">ToastyToast</button>
+ <button (click)="showSuccess()" class="btn btn-success">Add Toast</button> 
+ <button (click)="showInfo()" class="btn btn-info">Infomation</button> 
+ <button (click)="showError()" class="btn btn-danger">Eror</button> 
+ <button (click)="showWarning()" class="btn btn-warning">Warning</button>
+ <button class="btn btn-success" (click)="showSuccess()">Toastr Tester</button>

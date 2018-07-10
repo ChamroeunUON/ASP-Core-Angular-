@@ -1,7 +1,6 @@
-import { ToastrService } from './../../services/toastr-service.service';
 import { VihicleService } from '../../services/vihicle.service';
 import { Component, OnInit } from '@angular/core';
-import {ToastyService, ToastyConfig, ToastOptions, ToastData} from 'ng2-toasty';
+
 
 
 // import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -23,11 +22,8 @@ export class VihicleFormComponent implements OnInit {
     contact:{}
   };
   constructor(
-    private vihicleService: VihicleService,
-    private toastrService:ToastrService,
-    toastyConfig:ToastyConfig
+    private vihicleService: VihicleService
     ) {
-      toastyConfig.theme= "bootstrap";
      }
   ngOnInit() {
     this.vihicleService.getMakes()
@@ -42,7 +38,6 @@ export class VihicleFormComponent implements OnInit {
     var selectMake = this.makes.find(((m: any) => m.id == this.vehicle.makeId));
     this.models = selectMake.models ? selectMake.models : [];
     delete this.vehicle.modelId;
-    this.toastrService.Error("Error While Saving");
   }
   onFeatureToggle(featureId: any, $event: any) {
     if ($event.target.checked)
@@ -57,9 +52,9 @@ export class VihicleFormComponent implements OnInit {
     this.vihicleService.create(this.vehicle)
       .subscribe(x => console.log(x),
     _err=>{
-      this.toastrService.Error("Error While Saving");
+    
     }
     );
-    this.toastrService.Success("Successfully!!");
+    
   }
 }

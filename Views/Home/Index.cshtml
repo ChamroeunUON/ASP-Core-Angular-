@@ -2,16 +2,17 @@
     ViewData["Title"] = "Home Page";
 }
 
-<app asp-prerender-module="ClientApp/dist/main-server">Loading...</app>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-<script
+<app asp-ng2-prerender-module="ClientApp/dist/main-server">Loading...</app>
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+<link href="node_modules/ng2-toastr/bundles/ng2-toastr.min.css" rel="stylesheet" /> -->
+<!-- <script
 			  src="https://code.jquery.com/jquery-2.2.4.min.js"
 			  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-			  crossorigin="anonymous"></script>
+			  crossorigin="anonymous"></script> -->
 
 
 <script src="~/dist/vendor.js" asp-append-version="true"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>/>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>/> -->
 @section scripts {
     <script src="~/dist/main-client.js" asp-append-version="true"></script>
 }

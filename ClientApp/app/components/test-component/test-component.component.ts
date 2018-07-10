@@ -1,6 +1,5 @@
-import { ToastyService } from 'ng2-toasty';
-import { ToastrService } from './../../services/toastr-service.service';
-import { Component, OnInit } from '@angular/core';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 
 @Component({
   selector: 'app-test-component',
@@ -16,38 +15,33 @@ export class TestComponentComponent implements OnInit {
 
   }
   constructor(
-    private toastrService: ToastrService,
-    private toastyService: ToastyService) {
+    public toastr: ToastsManager,
+    vcr: ViewContainerRef
+    
+   ) {
     this.title = 'Baboo';
     this.newHero = 'King Man';
-    
-   
+    this.toastr.setRootViewContainerRef(vcr);
   }
-  addToast() {
-    
-  this.toastrService.Success("Successfully");
-  // Add see all possible types in one shot
+  showSuccess() {
+    this.toastr.success('You are awesome!', 'Success!');
   }
-  Error() {
-    
-  this.toastrService.Error("Error While Saving");
-  // Add see all possible types in one shot
-  }
-  Info() {
-    
-  this.toastrService.Info("Information");
-  // Add see all possible types in one shot
 
+  showError() {
+    this.toastr.error('This is not good!', 'Oops!');
   }
-  ToastyTest(){
-    this.toastyService.success("Hello");
-  }
-  Warning() {
-    
-  this.toastrService.Warning("Warning While Saving");
-  // Add see all possible types in one shot
 
+  showWarning() {
+    this.toastr.warning('You are being warned.', 'Alert!');
   }
+
+  showInfo() {
+    this.toastr.info('Just some information for you.');
+  }
+  
+  
+ 
+ 
   ngOnInit() {
   }
   value = '';
