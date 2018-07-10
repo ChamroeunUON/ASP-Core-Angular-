@@ -1,3 +1,4 @@
+
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { TestComponentComponent } from './components/test-component/test-component.component';
@@ -16,8 +17,14 @@ import { CounterComponent } from "./components/counter/counter.component";
 import { ReverseCounterComponent } from './components/reverse-counter/reverse-counter.component';
 import { VihicleFormComponent } from './components/vihicle-form/vihicle-form.component';
 import { BrowserModule } from '@angular/platform-browser';
+import {ToastOptions} from 'ng2-toastr';
 
-
+export class CustomOption extends ToastOptions {
+    animate = 'flyRight'; // you can override any options available
+    newestOnTop = false;
+    showCloseButton = true;
+    // positionClass= 'toast-top-center';
+  }
 @NgModule({
     declarations: [
         AppComponent,
@@ -52,12 +59,12 @@ import { BrowserModule } from '@angular/platform-browser';
         ToastModule
     ],
     providers: [
-        VihicleService
-
-        
+        VihicleService,
+        {provide: ToastOptions, useClass: CustomOption},
     ],
 
 })
 export class AppModuleShared {
     
 }
+

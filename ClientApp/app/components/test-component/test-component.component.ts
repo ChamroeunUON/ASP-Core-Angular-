@@ -1,5 +1,6 @@
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import{ToastOptions} from 'ng2-toastr';
 
 @Component({
   selector: 'app-test-component',
@@ -24,11 +25,17 @@ export class TestComponentComponent implements OnInit {
     this.toastr.setRootViewContainerRef(vcr);
   }
   showSuccess() {
-    this.toastr.success('You are awesome!', 'Success!');
+    this.toastr.success('You are awesome!','Title', 
+        {
+          toastLife: 1000,
+          showCloseButton: true,
+          animate:'flyRight',
+          positionClass:'toast-bottom-right'
+        });
   }
 
   showError() {
-    this.toastr.error('This is not good!', 'Oops!');
+    this.toastr.error('This is not good! Please Click me to continue', 'Oops!',{dismiss: 'click'});
   }
 
   showWarning() {
