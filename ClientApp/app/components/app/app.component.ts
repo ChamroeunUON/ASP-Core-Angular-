@@ -1,5 +1,5 @@
+import { ToastyService } from 'ng2-toasty';
 import { ToastrService } from './../../services/toastr-service.service';
-
 import { Component, NgModule } from '@angular/core';
 
 
@@ -12,7 +12,10 @@ export class AppComponent {
     /**
      *
      */
-    constructor(private toasterService: ToastrService) {
+    constructor(
+        private toasterService: ToastrService,
+        private toastyService: ToastyService    
+    ) {
 
     }
     Success() {

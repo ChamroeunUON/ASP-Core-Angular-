@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ASP_Angular</title>
     <base href="~/" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" /> -->
+     <link href="node_modules/ng2-toastr/bundles/ng2-toastr.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/dist/vendor.css" asp-append-version="true" />
     
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> -->
+   
+    <script src="node_modules/ng2-toastr/bundles/ng2-toastr.min.js"></script>
 </head>
 <body>
     @RenderBody()

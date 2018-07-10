@@ -1,3 +1,4 @@
+import { ToastyService } from 'ng2-toasty';
 import { ToastrService } from './../../services/toastr-service.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -14,7 +15,9 @@ export class TestComponentComponent implements OnInit {
     myHero: 'My Hero'
 
   }
-  constructor(private toastrService: ToastrService) {
+  constructor(
+    private toastrService: ToastrService,
+    private toastyService: ToastyService) {
     this.title = 'Baboo';
     this.newHero = 'King Man';
     
@@ -35,6 +38,9 @@ export class TestComponentComponent implements OnInit {
   this.toastrService.Info("Information");
   // Add see all possible types in one shot
 
+  }
+  ToastyTest(){
+    this.toastyService.success("Hello");
   }
   Warning() {
     
