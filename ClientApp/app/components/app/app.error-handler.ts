@@ -1,0 +1,23 @@
+
+import { ToastyService } from 'ng2-toasty';
+import { ErrorHandler, Inject, NgZone } from '@angular/core';
+
+
+export class AppErrorHandler implements ErrorHandler {
+    constructor(
+        @Inject(ToastyService) private toastyService: ToastyService,
+        @Inject(NgZone) private ngZone : NgZone) { }
+    handleError(error: any): void {
+        // console.log('ERROR BABOO');    
+        this.ngZone.run(():any => {
+            this.toastyService.error({
+                title: "Opp!!",
+                msg: "Something went wrong!",
+                showClose: true,
+                theme: "bootstrap",
+                timeout: 5000
+            });
+        });
+
+    }
+}    

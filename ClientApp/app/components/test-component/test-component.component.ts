@@ -1,6 +1,5 @@
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import{ToastOptions} from 'ng2-toastr';
+import { ToastyService } from 'ng2-toasty';
+import { Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-test-component',
@@ -15,40 +14,47 @@ export class TestComponentComponent implements OnInit {
     myHero: 'My Hero'
 
   }
-  constructor(
-    public toastr: ToastsManager,
-    vcr: ViewContainerRef
-    
+  constructor(private toastyService:ToastyService
    ) {
-    this.title = 'Baboo';
-    this.newHero = 'King Man';
-    this.toastr.setRootViewContainerRef(vcr);
   }
   showSuccess() {
-    this.toastr.success('You are awesome!','Title', 
-        {
-          toastLife: 1000,
-          showCloseButton: true,
-          animate:'flyRight',
-          positionClass:'toast-bottom-right'
-        });
+    this.toastyService.success({
+      title:'Success',
+      msg:'You are awsome',
+      theme:'bootstrap',
+      timeout:5000,
+      showClose:true
+    })
   }
 
   showError() {
-    this.toastr.error('This is not good! Please Click me to continue', 'Oops!',{dismiss: 'click'});
+    this.toastyService.error({
+      title:'Success',
+      msg:'You are awsome',
+      theme:'bootstrap',
+      timeout:5000,
+      showClose:true
+    })
   }
 
   showWarning() {
-    this.toastr.warning('You are being warned.', 'Alert!');
+    this.toastyService.warning({
+      title:'Success',
+      msg:'You are awsome',
+      theme:'bootstrap',
+      timeout:5000,
+      showClose:true
+    })
   }
-
   showInfo() {
-    this.toastr.info('Just some information for you.');
+    this.toastyService.info({
+      title:'Success',
+      msg:'You are awsome',
+      theme:'bootstrap',
+      timeout:5000,
+      showClose:true
+    })
   }
-  
-  
- 
- 
   ngOnInit() {
   }
   value = '';

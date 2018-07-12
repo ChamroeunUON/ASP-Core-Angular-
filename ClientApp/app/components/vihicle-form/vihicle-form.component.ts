@@ -50,11 +50,6 @@ export class VihicleFormComponent implements OnInit {
   submit() {
     
     this.vihicleService.create(this.vehicle)
-      .subscribe(x => console.log(x),
-    _err=>{
-    
-    }
-    );
-    
+      .subscribe(x => console.log(x));
   }
 }

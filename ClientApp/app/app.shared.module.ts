@@ -1,9 +1,11 @@
+import { ToastyModule } from 'ng2-toasty';
 
-import {ToastModule} from 'ng2-toastr/ng2-toastr';
+
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { TestComponentComponent } from './components/test-component/test-component.component';
 import { VihicleService } from './services/vihicle.service';
-import { NgModule } from "@angular/core";
+import { NgModule, ErrorHandler } from "@angular/core";
+import { AppErrorHandler } from './components/app/app.error-handler';
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
@@ -16,15 +18,9 @@ import { FetchDataComponent } from "./components/fetchdata/fetchdata.component";
 import { CounterComponent } from "./components/counter/counter.component";
 import { ReverseCounterComponent } from './components/reverse-counter/reverse-counter.component';
 import { VihicleFormComponent } from './components/vihicle-form/vihicle-form.component';
+import { TostyTestComponent } from './components/toasty-test-component/tosty-test.component'
 import { BrowserModule } from '@angular/platform-browser';
-import {ToastOptions} from 'ng2-toastr';
 
-export class CustomOption extends ToastOptions {
-    animate = 'flyRight'; // you can override any options available
-    newestOnTop = false;
-    showCloseButton = true;
-    // positionClass= 'toast-top-center';
-  }
 @NgModule({
     declarations: [
         AppComponent,
@@ -34,33 +30,34 @@ export class CustomOption extends ToastOptions {
         HomeComponent,
         VihicleFormComponent,
         ReverseCounterComponent,
-        TestComponentComponent
+        TestComponentComponent,
+        TostyTestComponent
+        
     ],
     imports: [
         CommonModule,
         HttpModule,
         BrowserAnimationsModule,
-        ToastModule.forRoot(),
+        ToastyModule.forRoot(),
         FormsModule,
         RouterModule.forRoot([
             { path: 'reverse-counter', component: ReverseCounterComponent },
             { path: 'vihicle/new', component: VihicleFormComponent },
             { path: 'test', component: TestComponentComponent },
+            { path: 'tostytest', component: TostyTestComponent },
             { path: "", redirectTo: "home", pathMatch: "full" },
             { path: "home", component: HomeComponent },
             { path: "counter", component: CounterComponent },
             { path: "fetch-data", component: FetchDataComponent },
             { path: "**", redirectTo: "home" }
-            
         ])
     ],
     exports: [
-        BrowserModule,
-        ToastModule
+        BrowserModule
     ],
     providers: [
-        VihicleService,
-        {provide: ToastOptions, useClass: CustomOption},
+      {provide:ErrorHandler,useClass:AppErrorHandler},
+        VihicleService
     ],
 
 })
@@ -68,3 +65,4 @@ export class AppModuleShared {
     
 }
 
+    
