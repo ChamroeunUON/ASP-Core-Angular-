@@ -1,3 +1,6 @@
+
+import * as Raven from 'raven-js';
+// import Raven = require('raven-js');
 import { ToastyModule } from 'ng2-toasty';
 
 
@@ -20,7 +23,9 @@ import { ReverseCounterComponent } from './components/reverse-counter/reverse-co
 import { VihicleFormComponent } from './components/vihicle-form/vihicle-form.component';
 import { TostyTestComponent } from './components/toasty-test-component/tosty-test.component'
 import { BrowserModule } from '@angular/platform-browser';
-
+Raven
+  .config('https://5294aea1d0c54de7bf2151c68e9056d1@sentry.io/1241890')
+  .install();
 @NgModule({
     declarations: [
         AppComponent,

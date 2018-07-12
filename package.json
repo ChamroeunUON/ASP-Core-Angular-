@@ -4,7 +4,9 @@
   "version": "3.0.2",
   "scripts": {
     "test": "karma start ClientApp/test/karma.conf.js",
-    "build": "webpack -d --progress --colors"
+   
+    "build": "webpack --config webpack.config.vendor.js",
+    "compile": "webpack --config webpack.config.vendor.js"
   },
   "devDependencies": {
     "@angular/animations": "4.2.5",
@@ -56,7 +58,7 @@
     "to-string-loader": "1.1.5",
     "typescript": "2.4.1",
     "url-loader": "^1.0.1",
-    "webpack": "^2.5.1",
+    "webpack": "^2.7.0",
     "webpack-hot-middleware": "2.18.2",
     "webpack-merge": "4.1.0",
     "zone.js": "0.8.12"
@@ -66,6 +68,7 @@
     "@angular/material": "^6.3.0",
     "cash-cp": "^0.2.0",
     "ng2-toasty": "^4.0.3",
+    "raven-js": "^3.26.3",
     "toastr": "^2.1.4",
     "webpack-cli": "^3.0.8"
   }

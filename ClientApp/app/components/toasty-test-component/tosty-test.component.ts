@@ -12,7 +12,7 @@ export class TostyTestComponent implements OnInit {
     
    }
    Success(){
-     this.toastyService.success({
+     this.toastyService.error({
       title: "Toast It!",
       msg: "Mmmm, tasties...",
       showClose: true,
