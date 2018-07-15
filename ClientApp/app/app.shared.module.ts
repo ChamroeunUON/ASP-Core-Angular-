@@ -46,6 +46,7 @@ Raven
         RouterModule.forRoot([
             { path: 'reverse-counter', component: ReverseCounterComponent },
             { path: 'vihicle/new', component: VihicleFormComponent },
+            { path: 'vihicle/:id', component: VihicleFormComponent },
             { path: 'test', component: TestComponentComponent },
             { path: 'tostytest', component: TostyTestComponent },
             { path: "", redirectTo: "home", pathMatch: "full" },

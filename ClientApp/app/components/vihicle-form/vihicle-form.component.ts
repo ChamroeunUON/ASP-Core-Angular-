@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 // import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import 'rxjs/Rx';
+import { ActivatedRoute, Router } from '../../../../node_modules/@angular/router';
 
 
 @Component({
@@ -14,16 +15,21 @@ import 'rxjs/Rx';
   styleUrls: ['./vihicle-form.component.css']
 })
 export class VihicleFormComponent implements OnInit {
-  makes: any;
-  models: any;
+  makes: any=[];
+  models: any=[]
   features: any = [];
   vehicle: any = {
     features: [],
     contact:{}
   };
   constructor(
+    private route: ActivatedRoute,
+    private router :Router,
     private vihicleService: VihicleService
     ) {
+      // route.params.subscribe(p=>{
+      //   this.vehicle.id= +p['id'];
+      // });
      }
   ngOnInit() {
     this.vihicleService.getMakes()
