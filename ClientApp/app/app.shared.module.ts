@@ -1,10 +1,8 @@
-
 import * as Raven from 'raven-js';
-// import Raven = require('raven-js');
 import { ToastyModule } from 'ng2-toasty';
 
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TestComponentComponent } from './components/test-component/test-component.component';
 import { VihicleService } from './services/vihicle.service';
 import { NgModule, ErrorHandler } from "@angular/core";
@@ -26,6 +24,7 @@ import { BrowserModule } from '@angular/platform-browser';
 Raven
   .config('https://5294aea1d0c54de7bf2151c68e9056d1@sentry.io/1241890')
   .install();
+  
 @NgModule({
     declarations: [
         AppComponent,
@@ -37,7 +36,6 @@ Raven
         ReverseCounterComponent,
         TestComponentComponent,
         TostyTestComponent
-        
     ],
     imports: [
         CommonModule,
@@ -61,13 +59,12 @@ Raven
         BrowserModule
     ],
     providers: [
-      {provide:ErrorHandler,useClass:AppErrorHandler},
+        { provide: ErrorHandler, useClass: AppErrorHandler },
         VihicleService
     ],
 
 })
 export class AppModuleShared {
-    
+
 }
 
-    

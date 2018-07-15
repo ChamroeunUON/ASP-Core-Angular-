@@ -20,8 +20,6 @@ const nonTreeShakableModules = [
     'bootstrap/dist/css/bootstrap.css',
     'ng2-toasty',
     'ng2-toasty/bundles/style-bootstrap.css',
-    // 'ng2-toasty/bundles/materil-bootstrap.css',
-    // 'ng2-toasty/bundles/index.umd.js',
     'es6-promise',
     'es6-shim',
     'event-source-polyfill',

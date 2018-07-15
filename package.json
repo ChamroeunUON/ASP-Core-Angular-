@@ -6,7 +6,8 @@
     "test": "karma start ClientApp/test/karma.conf.js",
    
     "build": "webpack --config webpack.config.vendor.js",
-    "compile": "webpack --config webpack.config.vendor.js"
+    "compile": "webpack --config webpack.config.vendor.js",
+    "run": "webpack --config webpack.config.vendor.js"
   },
   "devDependencies": {
     "@angular/animations": "4.2.5",
