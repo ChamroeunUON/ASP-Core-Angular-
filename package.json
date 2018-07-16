@@ -4,7 +4,6 @@
   "version": "3.0.2",
   "scripts": {
     "test": "karma start ClientApp/test/karma.conf.js",
-   
     "build": "webpack --config webpack.config.vendor.js",
     "compile": "webpack --config webpack.config.vendor.js",
     "run": "webpack --config webpack.config.vendor.js"
@@ -67,10 +66,12 @@
   "dependencies": {
     "@angular/cdk": "^6.3.0",
     "@angular/material": "^6.3.0",
+    "@types/underscore": "^1.8.8",
     "cash-cp": "^0.2.0",
     "ng2-toasty": "^4.0.3",
     "raven-js": "^3.26.3",
     "toastr": "^2.1.4",
+    "underscore": "^1.9.1",
     "webpack-cli": "^3.0.8"
   }
 }

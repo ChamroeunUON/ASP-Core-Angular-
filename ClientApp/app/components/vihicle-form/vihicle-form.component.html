@@ -21,15 +21,15 @@
   </div>
   <p>Is this Vihicle Registered?</p>
   <label for="registered">
-    <input name="isRegistered" id="registered" type="radio"  [(ngModel)]="vehicle.isRegistered"> Yes
+    <input name="isRegistered" id="registered" [value]="true" type="radio"  [(ngModel)]="vehicle.isRegistered"> Yes
   </label>
   <label for="IsnoteRegistered">
-    <input type="radio" name="isRegistered" id="IsnoteRegistered" value="true"  [(ngModel)]="vehicle.isRegistered"> No
+    <input type="radio" name="isRegistered" id="IsnoteRegistered" [value]="false"  [(ngModel)]="vehicle.isRegistered"> No
   </label>
   <h1>Features</h1>
   <div *ngFor="let f of features">
     <label for="feature{{f.id}}">
-      <input type="checkbox" id="feature{{f.id}}" (change)="onFeatureToggle(f.id,$event)"> {{f.name}}
+      <input type="checkbox" id="feature{{f.id}}" (change)="onFeatureToggle(f.id,$event)" [checked]="vehicle.features.includes(f.id)"> {{f.name}}
     </label>
   </div>
   <h1>Contact </h1>
@@ -46,5 +46,7 @@
     <label for="email">Email</label>
     <input id="email" type="text" typ="text" class="form-control" [(ngModel)]="vehicle.contact.email" name="ContactEmail">
   </div>
-  <button class="btn btn-primary">Save</button>
+  <button type="submit" class="btn btn-primary">Save</button>
+  <button *ngIf="vehicle.id" type="button" class="btn btn-danger" (click)="delete()" >Delete</button>
+  
 </form>
