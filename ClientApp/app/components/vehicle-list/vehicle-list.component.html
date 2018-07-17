@@ -1,0 +1,26 @@
+<h1 class="header page-header">Vehicles</h1>
+<p>
+  <a [routerLink]="['/vihicle/new']" class="btn btn-primary">New Vehicle</a>
+</p>
+
+<div class="form-group">
+  <label for="make">Make</label>
+  <select id="make" class="form-control">
+    <option value=""></option>
+    <option *ngFor="let m of makes " value="{{m.id}}" class="form-control">{{ m.name}}</option>
+  </select>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th class="text-center">ID</th>
+      <th class="text-center">Make</th>
+      <th class="text-center">Model</th>
+      <th class="text-center">Contact Name</th>
+    </tr>
+  </thead>
+  <tr>
+    <td ></td>
+  </tr>
+  
+</table>

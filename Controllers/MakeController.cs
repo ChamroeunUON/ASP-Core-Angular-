@@ -34,15 +34,7 @@ namespace ASP_Angular.Controllers {
             var makeResource = mapper.Map<Make,KeyValuePareResource>(make);
             return Ok(makeResource);
         }
-        [HttpGet ("/api/listData")]
-        public IEnumerable<string> ListData () {
-            var li = new List<string> ();
-            li.Add ("Kok");
-            li.Add ("Kok");
-            li.Add ("Kok");
-            li.Add ("Kok");
-            return li;
-        }
+      
 
     }
 }

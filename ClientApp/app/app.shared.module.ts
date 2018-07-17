@@ -1,3 +1,4 @@
+import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
 import * as Raven from 'raven-js';
 import { ToastyModule } from 'ng2-toasty';
 
@@ -35,7 +36,8 @@ Raven
         VihicleFormComponent,
         ReverseCounterComponent,
         TestComponentComponent,
-        TostyTestComponent
+        TostyTestComponent,
+        VehicleListComponent
     ],
     imports: [
         CommonModule,
@@ -45,15 +47,16 @@ Raven
         FormsModule,
         RouterModule.forRoot([
             { path: 'reverse-counter', component: ReverseCounterComponent },
+            { path: 'vehicles', component: VehicleListComponent },
             { path: 'vihicle/new', component: VihicleFormComponent },
             { path: 'vihicle/:id', component: VihicleFormComponent },
             { path: 'test', component: TestComponentComponent },
             { path: 'tostytest', component: TostyTestComponent },
-            { path: "", redirectTo: "home", pathMatch: "full" },
+            { path: "", redirectTo: "vehicles", pathMatch: "full" },
             { path: "home", component: HomeComponent },
             { path: "counter", component: CounterComponent },
             { path: "fetch-data", component: FetchDataComponent },
-            { path: "**", redirectTo: "home" }
+            { path: "**", redirectTo: "vehicles" }
         ])
     ],
     exports: [

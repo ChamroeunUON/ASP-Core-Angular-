@@ -114,8 +114,6 @@ export class VihicleFormComponent implements OnInit {
         this.router.navigate(['/vihicle/new']);
       }
     }
-
-
   }
   submit() {
     var result$ = (this.vehicle.id) ? this.vihicleService.update(this.vehicle) : this.vihicleService.create(this.vehicle);
