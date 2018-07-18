@@ -125,7 +125,7 @@ export class VihicleFormComponent implements OnInit {
         showClose: true,
         timeout: 5000
       });
-      this.router.navigate(['/vihicle/', vehicle.id])
+        this.router.navigate(['/vihicle/', vehicle.id])
     });
   }
 }
