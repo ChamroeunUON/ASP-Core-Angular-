@@ -10,7 +10,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VehicleListComponent implements OnInit {
   vehicles: Vehicle[] | undefined;
-  allVehicles: Vehicle[] | undefined;
   makes: KeyValuePare[] | undefined;
   filter: any = {};
   constructor(
@@ -25,7 +24,7 @@ export class VehicleListComponent implements OnInit {
   populateVehicle() {
 
     this.vehiclesService.getVehicles(this.filter)
-      .subscribe(vehicles => this.vehicles=this.allVehicles= vehicles);
+      .subscribe(vehicles => this.vehicles= vehicles);
   }
   onFilterChange() {
     // var vehicles = this.allVehicles;
@@ -37,6 +36,7 @@ export class VehicleListComponent implements OnInit {
       
     //   this.vehicles = vehicles;
     // }
+    // this.filter.modelId = 1; // Will Sorting bu ModelId
     this.populateVehicle();
     
   }
