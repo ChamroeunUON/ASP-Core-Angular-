@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ASP_Angular.Core;
 using ASP_Angular.Core.Models;
@@ -21,13 +22,19 @@ namespace ASP_Angular.Persistence {
                     .ThenInclude (m => m.Make)
                 .SingleOrDefaultAsync (fid => fid.Id == id);
         }
-        public async Task<IEnumerable<Vehicle>> GetVehicles(){
-            return await context.Vehicles
+        public async Task<IEnumerable<Vehicle>> GetVehicles(Filter filter){
+            var query = context.Vehicles
                 .Include(model=> model.Model)
                     .ThenInclude(make=> make.Make)
                 .Include(v=>v.Features)
                     .ThenInclude(f=>f.Feature)
-                .ToListAsync();
+                .AsQueryable();
+            if(filter.MakeId.HasValue)
+                query = query.Where(v=> v.Model.MakeId == filter.MakeId.Value);
+            if(filter.ModelId.HasValue)
+                query = query.Where(m=>m.ModelId == filter.ModelId.Value);
+            return await query.ToListAsync();
+                
         }
         public void Add (Vehicle vehicle) {
             context.Vehicles.Add (vehicle);

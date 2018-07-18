@@ -2,7 +2,7 @@ namespace ASP_Angular.Core.Models
 {
     public class Filter
     {
-        public int? mkaeId { get; set; }
-        public int? modelId { get; set; }
+        public int? MakeId { get; set; }
+        public int? ModelId { get; set; }
     }
 }

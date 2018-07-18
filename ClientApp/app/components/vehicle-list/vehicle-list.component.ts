@@ -1,3 +1,4 @@
+import { async } from '@angular/core/testing';
 import { Vehicle, KeyValuePare } from './../../../../Core/Models/vehicle';
 import { VihicleService } from './../../services/vihicle.service';
 import { Component, OnInit } from '@angular/core';
@@ -8,31 +9,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./vehicle-list.component.css']
 })
 export class VehicleListComponent implements OnInit {
-  vehicles: Vehicle[]|undefined;
-  allVehicles: Vehicle[]|undefined;
+  vehicles: Vehicle[] | undefined;
+  allVehicles: Vehicle[] | undefined;
   makes: KeyValuePare[] | undefined;
-  filter:any={};
+  filter: any = {};
   constructor(
-    private vehiclesService:VihicleService,
+    private vehiclesService: VihicleService,
   ) { }
 
   ngOnInit() {
     this.vehiclesService.getMakes()
-      .subscribe(makes=>this.makes = makes);
+      .subscribe(makes => this.makes = makes);
+    this.populateVehicle();
+  }
+  populateVehicle() {
     this.vehiclesService.getVehicles()
-      .subscribe(vehicles=> this.vehicles =this.allVehicles =vehicles);
+      .subscribe(vehicles => this.vehicles = this.allVehicles = vehicles);
   }
-  onFilterChange(){
+  onFilterChange() {
     var vehicles = this.allVehicles;
-    if(vehicles!==undefined){
-      if(this.filter.makeId)
-      vehicles = vehicles.filter(v=> v.make.id == this.filter.makeId);
-    if (this.filter.modelId)
-      vehicles = vehicles.filter(v => v.model.id == this.filter.modelId);
-    this.vehicles =vehicles;
-    }   
+    if (vehicles !== undefined) {
+      if (this.filter.makeId)
+        vehicles = vehicles.filter(v => v.make.id == this.filter.makeId);
+      if (this.filter.modelId)
+        vehicles = vehicles.filter(v => v.model.id == this.filter.modelId);
+      this.vehicles = vehicles;
+    }
   }
-  onReset(){
+  onReset() {
     this.filter = {};
     this.onFilterChange();
   }
