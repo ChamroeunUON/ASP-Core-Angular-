@@ -80,8 +80,8 @@ namespace ASP_Angular.Controllers {
         }
 
         [HttpGet]
-        public async Task<IEnumerable<VehicleResource>> GetVehicles(FilterResource filterResource){
-                var filter = mapper.Map<FilterResource,Filter>(filterResource);
+        public async Task<IEnumerable<VehicleResource>> GetVehicles(VehicleFilterResource filterResource){
+                var filter = mapper.Map<VehicleFilterResource,VehicleQuery>(filterResource);
                 var vehicles = await repository.GetVehicles(filter);
                 return mapper.Map<IEnumerable<Vehicle>,IEnumerable<VehicleResource>>(vehicles);
         }

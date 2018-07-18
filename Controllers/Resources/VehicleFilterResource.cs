@@ -1,6 +1,6 @@
-namespace ASP_Angular.Core.Models
+namespace ASP_Angular.Controllers.Resources
 {
-    public class VehicleQuery
+    public class VehicleFilterResource
     {
         public int? MakeId { get; set; }
         public int? ModelId { get; set; }

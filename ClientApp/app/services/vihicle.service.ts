@@ -13,36 +13,37 @@ export class VihicleService {
     return this.http.get(this.makeEndPoint)
       .map(res => res.json());
   }
-  getFeatures(){
+  getFeatures() {
     return this.http.get(this.featureEndPoint)
-     .map(res => res.json());
-   }
-   create(vehicle: {} ){
+      .map(res => res.json());
+  }
+  create(vehicle: {}) {
     return this.http.post(this.vehicleEndPoint, vehicle)
       .map(res => res.json());
   }
-  update(vehicle:SaveVehicle){
-    return this.http.put(this.vehicleEndPoint+'/'+vehicle.id,vehicle)
-    .map(res=>res.json());
+  update(vehicle: SaveVehicle) {
+    return this.http.put(this.vehicleEndPoint + '/' + vehicle.id, vehicle)
+      .map(res => res.json());
   }
-  delete(id:number){
-    return this.http.delete(this.vehicleEndPoint+'/'+id)
-      .map(res=>res.json());
+  delete(id: number) {
+    return this.http.delete(this.vehicleEndPoint + '/' + id)
+      .map(res => res.json());
   }
-  getVehicle(id:number){
-    return this.http.get(this.vehicleEndPoint+'/'+id)
-      .map(res=>res.json());
+  getVehicle(id: number) {
+    return this.http.get(this.vehicleEndPoint + '/' + id)
+      .map(res => res.json());
   }
-  getVehicles(){
-    return this.http.get(this.vehicleEndPoint+'?'+ this.toQueryString(filter))
-      .map(res=> res.json());
+  getVehicles(filter: any) {
+    return this.http.get(this.vehicleEndPoint + '?' + this.toQueryString(filter))
+      .map(res => res.json());
   }
-  toQueryString(obj:any){
-    var part = [];
-    for(var property in obj)
+  toQueryString(obj: any) {
+    var parts = [];
+    for (var property in obj){
       var value = obj[property];
-    if(value != null && value != undefined)
-      part.push(encodeURIComponent(value));
-    return part.join('&');
+    if (value != null && value != undefined)
+      parts.push(encodeURIComponent(property) + '=' + encodeURIComponent(value));
+    }
+    return parts.join('&');
   }
 }

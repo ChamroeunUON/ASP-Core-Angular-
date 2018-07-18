@@ -1,5 +1,5 @@
 import { async } from '@angular/core/testing';
-import { Vehicle, KeyValuePare } from './../../../../Core/Models/vehicle';
+import { Vehicle, KeyValuePare, Contact } from './../../../../Core/Models/vehicle';
 import { VihicleService } from './../../services/vihicle.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -23,18 +23,22 @@ export class VehicleListComponent implements OnInit {
     this.populateVehicle();
   }
   populateVehicle() {
-    this.vehiclesService.getVehicles()
-      .subscribe(vehicles => this.vehicles = this.allVehicles = vehicles);
+
+    this.vehiclesService.getVehicles(this.filter)
+      .subscribe(vehicles => this.vehicles=this.allVehicles= vehicles);
   }
   onFilterChange() {
-    var vehicles = this.allVehicles;
-    if (vehicles !== undefined) {
-      if (this.filter.makeId)
-        vehicles = vehicles.filter(v => v.make.id == this.filter.makeId);
-      if (this.filter.modelId)
-        vehicles = vehicles.filter(v => v.model.id == this.filter.modelId);
-      this.vehicles = vehicles;
-    }
+    // var vehicles = this.allVehicles;
+    // if (vehicles !== undefined) {
+    //   if (this.filter.makeId)
+    //     vehicles = vehicles.filter(v => v.make.id == this.filter.makeId);
+    //   if (this.filter.modelId)
+    //     vehicles = vehicles.filter(v => v.model.id == this.filter.modelId);
+      
+    //   this.vehicles = vehicles;
+    // }
+    this.populateVehicle();
+    
   }
   onReset() {
     this.filter = {};
