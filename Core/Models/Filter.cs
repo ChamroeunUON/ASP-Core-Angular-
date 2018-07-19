@@ -1,6 +1,8 @@
+using ASP_Angular.Extensions;
+
 namespace ASP_Angular.Core.Models
 {
-    public class VehicleQuery
+    public class VehicleQuery : IQueryObject
     {
         public int? MakeId { get; set; }
         public int? ModelId { get; set; }
