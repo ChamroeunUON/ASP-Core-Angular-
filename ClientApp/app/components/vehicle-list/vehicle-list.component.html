@@ -17,16 +17,19 @@
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th class="text-center">ID</th>
-      <th (click)="sortBy('make')" class="text-center">
-        Make
-        <i *ngIf="query.SortBy ==='make'"
-        class="fa"
-        [class.fa-sort-alpha-asc]="query.IsSortByAccending"
-        [class.fa-sort-alpha-desc]="!query.IsSortByAccending"
-        ></i>
+      <!-- <th class="text-center">ID</th> -->
+      <th  *ngFor ="let c of columns">
+      <div (click)="sortBy(c.key)" class="text-center">
+        {{c.title}}
+          <i *ngIf="query.SortBy ===c.key"
+          class="fa"
+          [class.fa-sort-alpha-asc]="query.IsSortByAccending"
+          [class.fa-sort-alpha-desc]="!query.IsSortByAccending"
+          ></i>  
+      </div>
+        
       </th>
-      <th (click)="sortBy('model')" class="text-center">
+      <!-- <th (click)="sortBy('model')" class="text-center">
         Model
         <i *ngIf="query.SortBy ==='model'"
         class="fa"
@@ -40,7 +43,7 @@
         class="fa"
         [class.fa-sort-alpha-asc]="query.IsSortByAccending"
         [class.fa-sort-alpha-desc]="!query.IsSortByAccending"
-        ></i></th>
+        ></i></th> -->
     </tr>
   </thead>
   <tbody>
