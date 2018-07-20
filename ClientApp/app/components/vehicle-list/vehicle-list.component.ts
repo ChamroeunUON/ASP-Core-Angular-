@@ -15,11 +15,11 @@ export class VehicleListComponent implements OnInit {
   makes: KeyValuePare[] | undefined;
   query: any = {};
   columns = [
-    {},
-    {title:'Make',key:'make'},
-    {title:'Model',key:'model'},
-    {title:'Contact Name',key:'contactName'},
-    {title:'Make',key:'make'}
+    {title:'ID'},
+    {title:'Make',key:'make',isSortable: true},
+    {title:'Model',key:'model',isSortable: true},
+    {title:'Contact Name',key:'contactName',isSortable: true},
+    {}
   ]
   constructor(
     private vehiclesService: VihicleService,

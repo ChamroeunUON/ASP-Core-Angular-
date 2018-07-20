@@ -17,33 +17,19 @@
 <table class="table table-bordered">
   <thead>
     <tr>
-      <!-- <th class="text-center">ID</th> -->
-      <th  *ngFor ="let c of columns">
-      <div (click)="sortBy(c.key)" class="text-center">
-        {{c.title}}
-          <i *ngIf="query.SortBy ===c.key"
+      <th  *ngFor ="let c of columns" class="text-center">
+      <div *ngIf = "c.isSortable" (click)="sortBy(c.key)">
+          {{c.title}}
+          <i *ngIf="query.SortBy === c.key; else sortAble"
           class="fa"
           [class.fa-sort-alpha-asc]="query.IsSortByAccending"
           [class.fa-sort-alpha-desc]="!query.IsSortByAccending"
           ></i>  
       </div>
-        
+      <div *ngIf = "!c.isSortable">
+        {{c.title}}
+      </div> 
       </th>
-      <!-- <th (click)="sortBy('model')" class="text-center">
-        Model
-        <i *ngIf="query.SortBy ==='model'"
-        class="fa"
-        [class.fa-sort-alpha-asc]="query.IsSortByAccending"
-        [class.fa-sort-alpha-desc]="!query.IsSortByAccending"
-        ></i>
-      </th>
-      <th (click)="sortBy('contactName')" class="text-center">
-        Contact Name
-        <i *ngIf="query.SortBy ==='contactName'"
-        class="fa"
-        [class.fa-sort-alpha-asc]="query.IsSortByAccending"
-        [class.fa-sort-alpha-desc]="!query.IsSortByAccending"
-        ></i></th> -->
     </tr>
   </thead>
   <tbody>
