@@ -38,12 +38,9 @@ namespace ASP_Angular.Persistence {
             if (queryObj.ModelId.HasValue)
                 query = query.Where (m => m.ModelId == queryObj.ModelId.Value);
 
-            var columnMap = new Dictionary<string, Expression<Func<Vehicle, object>>>(){
-                ["make"] = v => v.Model.Make.Name,
-                ["model"] = v => v.Model.Name, 
-                ["contactName"] = v => v.ContactName, 
-                ["id"] = v => v.Id
-            };
+            var columnMap = new Dictionary<string, Expression<Func<Vehicle, object>> > () {
+                    ["make"] = v => v.Model.Make.Name, ["model"] = v => v.Model.Name, ["contactName"] = v => v.ContactName, ["id"] = v => v.Id
+                };
             // if(queryObj.SortBy == "make")
             //     query = (queryObj.IsSortByAccending) ? query.OrderBy(v=>v.Model.Make.Name):
             //     query.OrderByDescending(v=>v.Model.Name);
@@ -56,11 +53,12 @@ namespace ASP_Angular.Persistence {
             // if(queryObj.SortBy == "id")
             //     query = (queryObj.IsSortByAccending) ? query.OrderBy(v=> v.Id):
             //     query.OrderByDescending(v=>v.Id);
-            query =query.ApplyOrdering(queryObj,columnMap);
-            return await query.ToListAsync();
+            query = query.ApplyOrdering (queryObj, columnMap);
+           query = query.ApplyPaging(queryObj);
+            return await query.ToListAsync ();
 
         }
-      
+
         public void Add (Vehicle vehicle) {
             context.Vehicles.Add (vehicle);
         }
