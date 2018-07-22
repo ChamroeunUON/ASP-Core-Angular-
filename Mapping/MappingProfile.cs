@@ -21,7 +21,7 @@ namespace ASP_Angular.Mapping {
                 .ForMember (vr => vr.Features, opt => opt.MapFrom (v => v.Features.Select (vf => new KeyValuePareResource { Id = vf.Feature.Id, Name = vf.Feature.Name })))
                 .ForMember (vr => vr.Model, opt => opt.MapFrom (v => new Model { Id = v.ModelId, Name = v.Model.Name }));
             // Map API Resource to Domain
-            CreateMap<VehicleFilterResource,VehicleQuery>();
+            CreateMap<VehicleQueryResource,VehicleQuery>();
             CreateMap<SaveVehicleResource, Vehicle> ()
                 .ForMember (v => v.Id, opt => opt.Ignore ())
                 .ForMember (v => v.ContactName, opt => opt.MapFrom (vr => vr.Contact.Name))
