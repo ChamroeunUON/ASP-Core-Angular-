@@ -13,7 +13,9 @@ import { Title } from '../../../../node_modules/@angular/platform-browser';
 export class VehicleListComponent implements OnInit {
   vehicles: Vehicle[] | undefined;
   makes: KeyValuePare[] | undefined;
-  query: any = {};
+  query: any = {
+    pageSize: 3
+  };
   columns = [
     {title:'ID'},
     {title:'Make',key:'make',isSortable: true},
@@ -53,5 +55,9 @@ export class VehicleListComponent implements OnInit {
   onReset() {
     this.query = {};
     this.onFilterChange();
+  }
+  onPageChange(page:any) {
+    this.query.page = page;
+    this.populateVehicle();
   }
 }

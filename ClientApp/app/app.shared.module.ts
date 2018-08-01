@@ -1,8 +1,7 @@
+
 import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
 import * as Raven from 'raven-js';
 import { ToastyModule } from 'ng2-toasty';
-
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TestComponentComponent } from './components/test-component/test-component.component';
 import { VihicleService } from './services/vihicle.service';
@@ -22,6 +21,7 @@ import { ReverseCounterComponent } from './components/reverse-counter/reverse-co
 import { VihicleFormComponent } from './components/vihicle-form/vihicle-form.component';
 import { TostyTestComponent } from './components/toasty-test-component/tosty-test.component'
 import { BrowserModule } from '@angular/platform-browser';
+import { PaginationComponent } from './components/pagination/pagination.component';
 Raven
   .config('https://5294aea1d0c54de7bf2151c68e9056d1@sentry.io/1241890')
   .install();
@@ -37,7 +37,8 @@ Raven
         ReverseCounterComponent,
         TestComponentComponent,
         TostyTestComponent,
-        VehicleListComponent
+        VehicleListComponent,
+        PaginationComponent
     ],
     imports: [
         CommonModule,
