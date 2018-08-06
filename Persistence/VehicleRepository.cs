@@ -25,7 +25,8 @@ namespace ASP_Angular.Persistence {
                 .ThenInclude (m => m.Make)
                 .SingleOrDefaultAsync (fid => fid.Id == id);
         }
-        public async Task<IEnumerable<Vehicle>> GetVehicles (VehicleQuery queryObj) {
+        public async Task<QueryResult<Vehicle>> GetVehicles (VehicleQuery queryObj) {
+            var result = new QueryResult<Vehicle>();
             var query = context.Vehicles
                 .Include (model => model.Model)
                 .ThenInclude (make => make.Make)
@@ -54,9 +55,10 @@ namespace ASP_Angular.Persistence {
             //     query = (queryObj.IsSortByAccending) ? query.OrderBy(v=> v.Id):
             //     query.OrderByDescending(v=>v.Id);
             query = query.ApplyOrdering (queryObj, columnMap);
-           query = query.ApplyPaging(queryObj);
-            return await query.ToListAsync ();
-
+            result.TotalsItem = await query.CountAsync();
+            query = query.ApplyPaging (queryObj);
+            result.Items = await query.ToListAsync ();
+            return result;
         }
 
         public void Add (Vehicle vehicle) {

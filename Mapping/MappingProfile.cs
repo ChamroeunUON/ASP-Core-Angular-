@@ -8,6 +8,7 @@ namespace ASP_Angular.Mapping {
         public MappingProfile () {
 
             // Map Domain to API Resource
+            CreateMap(typeof(QueryResult<>),typeof(QuerResultResource<>));
             CreateMap<Make, MakeResource> ();
             CreateMap<Make, KeyValuePareResource> ();
             CreateMap<Model, KeyValuePareResource> ();

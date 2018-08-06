@@ -11,7 +11,7 @@ import { Title } from '../../../../node_modules/@angular/platform-browser';
   styleUrls: ['./vehicle-list.component.css']
 })
 export class VehicleListComponent implements OnInit {
-  vehicles: Vehicle[] | undefined;
+  queryResult: any={} ;
   makes: KeyValuePare[] | undefined;
   query: any = {
     pageSize: 3
@@ -36,7 +36,7 @@ export class VehicleListComponent implements OnInit {
   populateVehicle() {
 
     this.vehiclesService.getVehicles(this.query)
-      .subscribe(vehicles => this.vehicles = vehicles);
+      .subscribe(result => this.queryResult = result);
   }
   onFilterChange() {
     this.populateVehicle();
