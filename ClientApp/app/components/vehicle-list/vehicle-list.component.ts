@@ -24,8 +24,7 @@ export class VehicleListComponent implements OnInit {
     {}
   ]
   constructor(
-    private vehiclesService: VihicleService,
-    private toastyService: ToastyService
+    private vehiclesService: VihicleService
   ) { }
 
   ngOnInit() {
@@ -39,6 +38,7 @@ export class VehicleListComponent implements OnInit {
       .subscribe(result => this.queryResult = result);
   }
   onFilterChange() {
+    this.query.page=1;
     this.populateVehicle();
   }
   sortBy(columnName: string) {
@@ -53,7 +53,10 @@ export class VehicleListComponent implements OnInit {
 
   }
   onReset() {
-    this.query = {};
+    this.query = {
+      page:1,
+      pageSize:3
+    };
     this.onFilterChange();
   }
   onPageChange(page:any) {
