@@ -22,6 +22,7 @@ import { VihicleFormComponent } from './components/vihicle-form/vihicle-form.com
 import { TostyTestComponent } from './components/toasty-test-component/tosty-test.component'
 import { BrowserModule } from '@angular/platform-browser';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { ViewVehicleComponent } from './components/view-vehicle/view-vehicle.component';
 Raven
   .config('https://5294aea1d0c54de7bf2151c68e9056d1@sentry.io/1241890')
   .install();
@@ -38,7 +39,8 @@ Raven
         TestComponentComponent,
         TostyTestComponent,
         VehicleListComponent,
-        PaginationComponent
+        PaginationComponent,
+        ViewVehicleComponent
     ],
     imports: [
         CommonModule,
@@ -50,7 +52,8 @@ Raven
             { path: 'reverse-counter', component: ReverseCounterComponent },
             { path: 'vehicles', component: VehicleListComponent },
             { path: 'vihicle/new', component: VihicleFormComponent },
-            { path: 'vihicle/:id', component: VihicleFormComponent },
+            { path: 'vihicle/edit/:id', component: VihicleFormComponent },
+            { path: 'vihicle/:id', component: ViewVehicleComponent },
             { path: 'test', component: TestComponentComponent },
             { path: 'tostytest', component: TostyTestComponent },
             { path: "", redirectTo: "vehicles", pathMatch: "full" },
