@@ -8,6 +8,7 @@ namespace ASP_Angular.Persistence {
         public DbSet<Feature> Features { set; get; }
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<VehicleFeature> VehicleFeatures { get; set; }
+        public DbSet<Photo> Photos { get; set; }
         
 
         public VegaDbContext (DbContextOptions<VegaDbContext> options) : base (options) {

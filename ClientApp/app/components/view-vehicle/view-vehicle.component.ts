@@ -45,15 +45,7 @@ export class ViewVehicleComponent implements OnInit {
     if (confirm('Are you sure?')) {
       this.vehecleService.delete(this.vehicle.id)
         .subscribe(p=>{
-          this.router.navigate(['vehicles']),
-          this.toastyService.success({
-            title:'Information',
-            msg:'Data was deleted',
-            theme:'bootstrap',
-            timeout:5000,
-            showClose:true
-          })
-
+          this.router.navigate(['vehicles'])
         });
        
     }
