@@ -11,15 +11,15 @@ export class AppErrorHandler implements ErrorHandler {
             Raven.captureException(error.originalError || error);
         // else
         //     throw error;
-        this.ngZone.run(():any => {
-            this.toastyService.error({
-                title: "Opp!!",
-                msg: "Something went wrong!",
-                showClose: true,
-                theme: "bootstrap",
-                timeout: 5000
-            });
-        });
+        // this.ngZone.run(():any => {
+        //     this.toastyService.error({
+        //         title: "Opp!!",
+        //         msg: "Something went wrong!",
+        //         showClose: true,
+        //         theme: "bootstrap",
+        //         timeout: 5000
+        //     });
+        // });
 
     }
 }    
